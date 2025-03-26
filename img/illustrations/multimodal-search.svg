@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5f5ff" />
+      <stop offset="100%" stop-color="#e6f7fd" />
+    </linearGradient>
+    <linearGradient id="primary-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1a5fb4" />
+      <stop offset="100%" stop-color="#3584e4" />
+    </linearGradient>
+    <linearGradient id="accent-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c061cb" />
+      <stop offset="100%" stop-color="#9141ac" />
+    </linearGradient>
+    <linearGradient id="green-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2ec27e" />
+      <stop offset="100%" stop-color="#33d17a" />
+    </linearGradient>
+    <linearGradient id="orange-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff7800" />
+      <stop offset="100%" stop-color="#ffbe6f" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#00000022" />
+    </filter>
+    <style>
+      @keyframes pulse {
+        0% { opacity: 0.7; }
+        50% { opacity: 1; }
+        100% { opacity: 0.7; }
+      }
+      .pulse {
+        animation: pulse 3s infinite ease-in-out;
+      }
+      .pulse-slow {
+        animation: pulse 5s infinite ease-in-out;
+      }
+      
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+      .float {
+        animation: float 5s ease-in-out infinite;
+      }
+      
+      @keyframes slideIn {
+        0% { transform: translateX(-20px); opacity: 0; }
+        100% { transform: translateX(0); opacity: 1; }
+      }
+      .slide-in {
+        opacity: 0;
+        animation: slideIn 1s ease-out forwards;
+      }
+      .delay1 { animation-delay: 0.2s; }
+      .delay2 { animation-delay: 0.4s; }
+      .delay3 { animation-delay: 0.6s; }
+      .delay4 { animation-delay: 0.8s; }
+      .delay5 { animation-delay: 1.0s; }
+      
+      @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      .rotate {
+        animation: rotate 20s infinite linear;
+      }
+      .rotate-reverse {
+        animation: rotate 20s infinite linear reverse;
+      }
+      
+      @keyframes dash {
+        0% { stroke-dashoffset: 500; }
+        100% { stroke-dashoffset: 0; }
+      }
+      .dash {
+        stroke-dasharray: 8, 4;
+        stroke-dashoffset: 500;
+        animation: dash 15s linear infinite;
+      }
+      
+      @keyframes scanning {
+        0%, 100% { y: 5; opacity: 0.8; }
+        50% { y: 75; opacity: 0.5; }
+      }
+      .scan-line {
+        animation: scanning 3s ease-in-out infinite;
+      }
+      
+      @keyframes fade-in {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      .fade-in {
+        opacity: 0;
+        animation: fade-in 1.5s ease-out forwards;
+      }
+    </style>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bg-gradient)" rx="10" ry="10" />
+  
+  <!-- 装饰性网格 - 旋转效果 -->
+  <g opacity="0.05" class="rotate" transform="translate(400, 250)">
+    <circle cx="0" cy="0" r="250" fill="none" stroke="#1a5fb4" stroke-width="1" />
+    <circle cx="0" cy="0" r="200" fill="none" stroke="#1a5fb4" stroke-width="1" />
+    <circle cx="0" cy="0" r="150" fill="none" stroke="#1a5fb4" stroke-width="1" />
+    <circle cx="0" cy="0" r="100" fill="none" stroke="#1a5fb4" stroke-width="1" />
+    <line x1="-300" y1="0" x2="300" y2="0" stroke="#1a5fb4" stroke-width="1" />
+    <line x1="0" y1="-300" x2="0" y2="300" stroke="#1a5fb4" stroke-width="1" />
+    <line x1="-200" y1="-200" x2="200" y2="200" stroke="#1a5fb4" stroke-width="1" />
+    <line x1="-200" y1="200" x2="200" y2="-200" stroke="#1a5fb4" stroke-width="1" />
+  </g>
+  
+  <!-- 标题区域 -->
+  <g class="slide-in delay1">
+    <rect x="150" y="30" width="500" height="60" rx="10" ry="10" fill="white" filter="url(#shadow)" />
+    <text x="400" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#333">多模态智能搜索系统</text>
+    <path d="M 150,70 L 650,70" stroke="#9141ac" stroke-width="3" stroke-linecap="round" />
+  </g>
+  
+  <!-- 中心搜索引擎区域 -->
+  <g class="pulse-slow" transform="translate(400, 250)">
+    <circle cx="0" cy="0" r="70" fill="url(#primary-gradient)" opacity="0.1" />
+    <circle cx="0" cy="0" r="50" fill="url(#primary-gradient)" opacity="0.2" />
+    <circle cx="0" cy="0" r="40" fill="white" filter="url(#shadow)" />
+    
+    <!-- 搜索引擎图标 -->
+    <g transform="scale(0.6)">
+      <circle cx="0" cy="0" r="40" fill="url(#primary-gradient)" />
+      <circle cx="0" cy="0" r="30" fill="white" opacity="0.2" />
+      <path d="M -15,-15 L 15,15 M -15,15 L 15,-15" stroke="white" stroke-width="6" stroke-linecap="round" />
+      <circle cx="0" cy="0" r="5" fill="white" />
+    </g>
+    
+    <text x="0" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#333" font-weight="bold">AI 搜索引擎</text>
+  </g>
+  
+  <!-- 四个模态: 文本、图像、视频、3D -->
+  
+  <!-- 1. 文本搜索 (左上) -->
+  <g class="slide-in delay2" transform="translate(180, 180)">
+    <rect x="-80" y="-60" width="160" height="120" rx="10" ry="10" fill="white" filter="url(#shadow)" />
+    <rect x="-80" y="-60" width="160" height="30" rx="10" ry="0" fill="url(#primary-gradient)" />
+    <text x="0" y="-45" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white" font-weight="bold">文本搜索</text>
+    
+    <!-- 文本搜索示意图 -->
+    <g transform="translate(-50, -15)">
+      <rect x="0" y="0" width="100" height="15" rx="3" ry="3" fill="#f0f0f0" />
+      <rect x="0" y="20" width="80" height="10" rx="2" ry="2" fill="#f0f0f0" />
+      <rect x="0" y="35" width="90" height="10" rx="2" ry="2" fill="#f0f0f0" />
+      <rect x="0" y="50" width="70" height="10" rx="2" ry="2" fill="#f0f0f0" />
+      
+      <!-- 搜索指示器 -->
+      <rect class="scan-line" x="0" y="5" width="100" height="2" fill="url(#primary-gradient)" opacity="0.7" />
+    </g>
+    
+    <!-- 指向中心的连接线 -->
+    <path d="M 0,60 C 50,60 80,150 140,170" fill="none" stroke="url(#primary-gradient)" stroke-width="2" class="dash" />
+  </g>
+  
+  <!-- 2. 图像搜索 (右上) -->
+  <g class="slide-in delay3" transform="translate(620, 180)">
+    <rect x="-80" y="-60" width="160" height="120" rx="10" ry="10" fill="white" filter="url(#shadow)" />
+    <rect x="-80" y="-60" width="160" height="30" rx="10" ry="0" fill="url(#accent-gradient)" />
+    <text x="0" y="-45" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white" font-weight="bold">图像搜索</text>
+    
+    <!-- 图像搜索示意图 -->
+    <g transform="translate(-50, -15)">
+      <rect x="0" y="0" width="100" height="60" rx="3" ry="3" fill="#f0f0f0" />
+      
+      <!-- 图像内部元素 -->
+      <rect x="10" y="10" width="40" height="40" rx="3" ry="3" fill="#dbeafe" />
+      <circle cx="70" cy="25" r="15" fill="#feedeb" />
+      <rect x="60" y="45" width="30" height="5" rx="2" ry="2" fill="#ecfdf5" />
+      
+      <!-- 搜索框 -->
+      <rect x="20" y="15" width="60" height="30" rx="5" ry="5" fill="none" stroke="url(#accent-gradient)" stroke-width="2" stroke-dasharray="3,2" class="pulse" />
+    </g>
+    
+    <!-- 指向中心的连接线 -->
+    <path d="M 0,60 C -50,60 -80,150 -140,170" fill="none" stroke="url(#accent-gradient)" stroke-width="2" class="dash" />
+  </g>
+  
+  <!-- 3. 视频搜索 (左下) -->
+  <g class="slide-in delay4" transform="translate(180, 320)">
+    <rect x="-80" y="-60" width="160" height="120" rx="10" ry="10" fill="white" filter="url(#shadow)" />
+    <rect x="-80" y="-60" width="160" height="30" rx="10" ry="0" fill="url(#green-gradient)" />
+    <text x="0" y="-45" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white" font-weight="bold">视频搜索</text>
+    
+    <!-- 视频搜索示意图 -->
+    <g transform="translate(-50, -15)">
+      <rect x="0" y="0" width="100" height="60" rx="3" ry="3" fill="#f0f0f0" />
+      
+      <!-- 播放控件 -->
+      <rect x="5" y="5" width="90" height="40" rx="2" ry="2" fill="#333" opacity="0.1" />
+      <circle cx="50" cy="25" r="15" fill="url(#green-gradient)" opacity="0.9" />
+      <path d="M 45,18 L 58,25 L 45,32 Z" fill="white" />
+      
+      <!-- 播放进度条 -->
+      <rect x="5" y="50" width="90" height="4" rx="2" ry="2" fill="#ddd" />
+      <rect x="5" y="50" width="30" height="4" rx="2" ry="2" fill="url(#green-gradient)" />
+    </g>
+    
+    <!-- 指向中心的连接线 -->
+    <path d="M 0,-60 C 50,-60 80,-150 140,-170" fill="none" stroke="url(#green-gradient)" stroke-width="2" class="dash" />
+  </g>
+  
+  <!-- 4. 3D模型搜索 (右下) -->
+  <g class="slide-in delay5" transform="translate(620, 320)">
+    <rect x="-80" y="-60" width="160" height="120" rx="10" ry="10" fill="white" filter="url(#shadow)" />
+    <rect x="-80" y="-60" width="160" height="30" rx="10" ry="0" fill="url(#orange-gradient)" />
+    <text x="0" y="-45" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white" font-weight="bold">3D模型搜索</text>
+    
+    <!-- 3D模型搜索示意图 -->
+    <g transform="translate(-50, -15)" class="float">
+      <!-- 基础立方体 -->
+      <path d="M 30,10 L 70,10 L 90,30 L 50,30 Z" fill="#ffbe6f" opacity="0.7" />
+      <path d="M 50,30 L 90,30 L 90,60 L 50,60 Z" fill="#ff7800" opacity="0.7" />
+      <path d="M 30,10 L 50,30 L 50,60 L 30,40 Z" fill="#ff9e44" opacity="0.7" />
+      
+      <!-- 3D坐标指示器 -->
+      <path d="M 15,55 L 15,35 L 35,15" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="2,1" />
+      <path d="M 15,55 L 35,55" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="2,1" />
+      <path d="M 15,55 L 15,75" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="2,1" />
+    </g>
+    
+    <!-- 指向中心的连接线 -->
+    <path d="M 0,-60 C -50,-60 -80,-150 -140,-170" fill="none" stroke="url(#orange-gradient)" stroke-width="2" class="dash" />
+  </g>
+  
+  <!-- 搜索结果展示区 -->
+  <g class="fade-in" style="animation-delay: 1.2s;" transform="translate(400, 420)">
+    <rect x="-300" y="-30" width="600" height="60" rx="10" ry="10" fill="white" filter="url(#shadow)" />
+    <text x="0" y="0" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#333" font-weight="bold">综合搜索结果</text>
+    
+    <!-- 结果示意图 -->
+    <g transform="translate(-270, 0)">
+      <circle cx="0" cy="0" r="10" fill="url(#primary-gradient)" />
+      <text x="15" y="5" font-family="Arial, sans-serif" font-size="12" fill="#333">文本</text>
+    </g>
+    
+    <g transform="translate(-180, 0)">
+      <circle cx="0" cy="0" r="10" fill="url(#accent-gradient)" />
+      <text x="15" y="5" font-family="Arial, sans-serif" font-size="12" fill="#333">图像</text>
+    </g>
+    
+    <g transform="translate(-90, 0)">
+      <circle cx="0" cy="0" r="10" fill="url(#green-gradient)" />
+      <text x="15" y="5" font-family="Arial, sans-serif" font-size="12" fill="#333">视频</text>
+    </g>
+    
+    <g transform="translate(0, 0)">
+      <circle cx="0" cy="0" r="10" fill="url(#orange-gradient)" />
+      <text x="15" y="5" font-family="Arial, sans-serif" font-size="12" fill="#333">3D模型</text>
+    </g>
+    
+    <g transform="translate(100, 0)">
+      <rect x="-10" y="-10" width="150" height="20" rx="5" ry="5" fill="url(#primary-gradient)" opacity="0.2" />
+      <text x="65" y="5" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a5fb4" font-weight="bold">智能排序与聚合</text>
+    </g>
+  </g>
+  
+  <!-- 装饰性微粒 -->
+  <g opacity="0.6">
+    <!-- 左上区域粒子 -->
+    <circle cx="100" cy="100" r="3" fill="#1a5fb4" class="pulse" />
+    <circle cx="120" cy="130" r="2" fill="#9141ac" class="pulse" />
+    <circle cx="90" cy="150" r="4" fill="#2ec27e" class="pulse" />
+    
+    <!-- 右上区域粒子 -->
+    <circle cx="700" cy="100" r="3" fill="#1a5fb4" class="pulse" />
+    <circle cx="680" cy="130" r="2" fill="#9141ac" class="pulse" />
+    <circle cx="710" cy="150" r="4" fill="#2ec27e" class="pulse" />
+    
+    <!-- 左下区域粒子 -->
+    <circle cx="100" cy="400" r="3" fill="#1a5fb4" class="pulse" />
+    <circle cx="130" cy="420" r="2" fill="#9141ac" class="pulse" />
+    <circle cx="150" cy="390" r="4" fill="#2ec27e" class="pulse" />
+    
+    <!-- 右下区域粒子 -->
+    <circle cx="700" cy="400" r="3" fill="#1a5fb4" class="pulse" />
+    <circle cx="670" cy="420" r="2" fill="#9141ac" class="pulse" />
+    <circle cx="650" cy="390" r="4" fill="#2ec27e" class="pulse" />
+  </g>
+  
+  <!-- 动态搜索波形圈 -->
+  <g transform="translate(400, 250)" class="pulse" opacity="0.4">
+    <circle cx="0" cy="0" r="100" fill="none" stroke="url(#primary-gradient)" stroke-width="1" />
+    <circle cx="0" cy="0" r="120" fill="none" stroke="url(#accent-gradient)" stroke-width="1" />
+    <circle cx="0" cy="0" r="140" fill="none" stroke="url(#green-gradient)" stroke-width="1" />
+    <circle cx="0" cy="0" r="160" fill="none" stroke="url(#orange-gradient)" stroke-width="1" />
+  </g>
+</svg> 

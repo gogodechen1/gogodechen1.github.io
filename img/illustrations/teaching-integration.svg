@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f4fa" />
+      <stop offset="100%" stop-color="#e8f4f2" />
+    </linearGradient>
+    <linearGradient id="primary-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1a5fb4" />
+      <stop offset="100%" stop-color="#3584e4" />
+    </linearGradient>
+    <linearGradient id="purple-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9141ac" />
+      <stop offset="100%" stop-color="#c061cb" />
+    </linearGradient>
+    <linearGradient id="orange-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff7800" />
+      <stop offset="100%" stop-color="#ffbe6f" />
+    </linearGradient>
+    <linearGradient id="process-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a5fb4" opacity="0.8" />
+      <stop offset="50%" stop-color="#9141ac" opacity="0.8" />
+      <stop offset="100%" stop-color="#ff7800" opacity="0.8" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#00000022" />
+    </filter>
+    <style>
+      @keyframes pulse {
+        0% { opacity: 0.7; }
+        50% { opacity: 1; }
+        100% { opacity: 0.7; }
+      }
+      .pulse {
+        animation: pulse 3s infinite ease-in-out;
+      }
+      
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+      .float {
+        animation: float 5s ease-in-out infinite;
+      }
+      
+      @keyframes slideIn {
+        0% { transform: translateX(-20px); opacity: 0; }
+        100% { transform: translateX(0); opacity: 1; }
+      }
+      .slide-in {
+        opacity: 0;
+        animation: slideIn 1s ease-out forwards;
+      }
+      .delay1 { animation-delay: 0.2s; }
+      .delay2 { animation-delay: 0.4s; }
+      .delay3 { animation-delay: 0.6s; }
+      .delay4 { animation-delay: 0.8s; }
+      .delay5 { animation-delay: 1.0s; }
+      
+      @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      .rotate {
+        animation: rotate 20s infinite linear;
+      }
+      .rotate-slow {
+        animation: rotate 40s infinite linear;
+      }
+      
+      @keyframes dash {
+        0% { stroke-dashoffset: 300; }
+        100% { stroke-dashoffset: 0; }
+      }
+      .dash {
+        stroke-dasharray: 8, 4;
+        stroke-dashoffset: 300;
+        animation: dash 15s linear infinite;
+      }
+      
+      @keyframes flow {
+        0% { stroke-dashoffset: 100; opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { stroke-dashoffset: 0; opacity: 0; }
+      }
+      .flow {
+        stroke-dasharray: 5, 5;
+        animation: flow 3s linear infinite;
+      }
+      
+      @keyframes fade-in {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      .fade-in {
+        opacity: 0;
+        animation: fade-in 1.5s ease-out forwards;
+      }
+      
+      @keyframes scale-in {
+        0% { transform: scale(0); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+      .scale-in {
+        transform-origin: center;
+        opacity: 0;
+        animation: scale-in 1s ease-out forwards;
+      }
+      
+      @keyframes grow-line {
+        0% { stroke-dashoffset: 500; }
+        100% { stroke-dashoffset: 0; }
+      }
+      .grow-line {
+        stroke-dasharray: 500;
+        stroke-dashoffset: 500;
+        animation: grow-line 2s ease-out forwards;
+      }
+    </style>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="url(#bg-gradient)" rx="10" ry="10" />
+  
+  <!-- 装饰性网格 - 旋转效果 -->
+  <g opacity="0.05" class="rotate-slow" transform="translate(400, 250)">
+    <circle cx="0" cy="0" r="230" fill="none" stroke="#1a5fb4" stroke-width="1" />
+    <circle cx="0" cy="0" r="180" fill="none" stroke="#1a5fb4" stroke-width="1" />
+    <circle cx="0" cy="0" r="130" fill="none" stroke="#1a5fb4" stroke-width="1" />
+    <line x1="-250" y1="0" x2="250" y2="0" stroke="#1a5fb4" stroke-width="1" />
+    <line x1="0" y1="-250" x2="0" y2="250" stroke="#1a5fb4" stroke-width="1" />
+    <line x1="-180" y1="-180" x2="180" y2="180" stroke="#1a5fb4" stroke-width="1" />
+    <line x1="-180" y1="180" x2="180" y2="-180" stroke="#1a5fb4" stroke-width="1" />
+  </g>
+  
+  <!-- 标题区域 -->
+  <g class="slide-in delay1">
+    <rect x="150" y="30" width="500" height="60" rx="10" ry="10" fill="white" filter="url(#shadow)" />
+    <text x="400" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#333">科研与教学融合系统</text>
+    <path d="M 150,70 L 650,70" stroke="#9141ac" stroke-width="3" stroke-linecap="round" />
+  </g>
+  
+  <!-- 左侧：科研区域 -->
+  <g class="slide-in delay2" transform="translate(160, 250)">
+    <rect x="-120" y="-130" width="240" height="260" rx="10" ry="10" fill="white" filter="url(#shadow)" />
+    <rect x="-120" y="-130" width="240" height="40" rx="10" ry="0" fill="url(#primary-gradient)" />
+    <text x="0" y="-105" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="white" font-weight="bold">科研成果</text>
+    
+    <!-- 科研内容 -->
+    <g transform="translate(0, -70)">
+      <!-- 学术论文 -->
+      <g class="float" style="animation-delay: 0.1s;">
+        <rect x="-100" y="0" width="200" height="32" rx="5" ry="5" fill="#f0f6ff" stroke="#1a5fb4" stroke-width="1" />
+        <rect x="-100" y="0" width="40" height="32" rx="5" ry="0" fill="url(#primary-gradient)" opacity="0.8" />
+        <text x="-80" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white">论文</text>
+        <text x="20" y="20" font-family="Arial, sans-serif" font-size="12" fill="#333">学术论文研究成果</text>
+      </g>
+      
+      <!-- 专利 -->
+      <g class="float" style="animation-delay: 0.2s;" transform="translate(0, 42)">
+        <rect x="-100" y="0" width="200" height="32" rx="5" ry="5" fill="#fef1f8" stroke="#9141ac" stroke-width="1" />
+        <rect x="-100" y="0" width="40" height="32" rx="5" ry="0" fill="url(#purple-gradient)" opacity="0.8" />
+        <text x="-80" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white">专利</text>
+        <text x="20" y="20" font-family="Arial, sans-serif" font-size="12" fill="#333">专利研发与成果转化</text>
+      </g>
+      
+      <!-- 项目实践 -->
+      <g class="float" style="animation-delay: 0.3s;" transform="translate(0, 84)">
+        <rect x="-100" y="0" width="200" height="32" rx="5" ry="5" fill="#fff5e6" stroke="#ff7800" stroke-width="1" />
+        <rect x="-100" y="0" width="40" height="32" rx="5" ry="0" fill="url(#orange-gradient)" opacity="0.8" />
+        <text x="-80" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white">项目</text>
+        <text x="20" y="20" font-family="Arial, sans-serif" font-size="12" fill="#333">企业合作项目实践</text>
+      </g>
+      
+      <!-- 标准规范 -->
+      <g class="float" style="animation-delay: 0.4s;" transform="translate(0, 126)">
+        <rect x="-100" y="0" width="200" height="32" rx="5" ry="5" fill="#e6f7ed" stroke="#26a269" stroke-width="1" />
+        <rect x="-100" y="0" width="40" height="32" rx="5" ry="0" fill="#26a269" opacity="0.8" />
+        <text x="-80" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white">标准</text>
+        <text x="20" y="20" font-family="Arial, sans-serif" font-size="12" fill="#333">行业标准与规范制定</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- 中心处理与转化区域 -->
+  <g class="scale-in" style="animation-delay: 1s;" transform="translate(400, 250)">
+    <circle cx="0" cy="0" r="70" fill="url(#process-gradient)" opacity="0.15" />
+    <circle cx="0" cy="0" r="60" fill="url(#process-gradient)" opacity="0.2" class="pulse" />
+    
+    <!-- 转化机制 -->
+    <g class="rotate" opacity="0.7">
+      <circle cx="0" cy="0" r="45" fill="none" stroke="#9141ac" stroke-width="1" stroke-dasharray="3,2" />
+      <circle cx="0" cy="0" r="35" fill="none" stroke="#1a5fb4" stroke-width="1" stroke-dasharray="2,2" />
+      <circle cx="0" cy="0" r="25" fill="none" stroke="#ff7800" stroke-width="1" stroke-dasharray="1,2" />
+    </g>
+    
+    <circle cx="0" cy="0" r="30" fill="white" filter="url(#shadow)" />
+    
+    <!-- 中心图标 -->
+    <g transform="scale(0.7)">
+      <rect x="-20" y="-25" width="40" height="50" rx="3" ry="3" fill="url(#primary-gradient)" opacity="0.9" />
+      <rect x="-15" y="-20" width="30" height="5" rx="1" ry="1" fill="white" opacity="0.7" />
+      <rect x="-15" y="-12" width="20" height="5" rx="1" ry="1" fill="white" opacity="0.7" />
+      <rect x="-15" y="-4" width="25" height="5" rx="1" ry="1" fill="white" opacity="0.7" />
+      <rect x="-15" y="4" width="15" height="5" rx="1" ry="1" fill="white" opacity="0.7" />
+      <rect x="-15" y="12" width="25" height="5" rx="1" ry="1" fill="white" opacity="0.7" />
+    </g>
+    
+    <text x="0" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#333" font-weight="bold">教学资源转化</text>
+  </g>
+  
+  <!-- 右侧：教学区域 -->
+  <g class="slide-in delay3" transform="translate(640, 250)">
+    <rect x="-120" y="-130" width="240" height="260" rx="10" ry="10" fill="white" filter="url(#shadow)" />
+    <rect x="-120" y="-130" width="240" height="40" rx="10" ry="0" fill="url(#orange-gradient)" />
+    <text x="0" y="-105" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="white" font-weight="bold">教学应用</text>
+    
+    <!-- 教学内容 -->
+    <g transform="translate(0, -70)">
+      <!-- 案例课程 -->
+      <g class="float" style="animation-delay: 0.5s;">
+        <rect x="-100" y="0" width="200" height="32" rx="5" ry="5" fill="#fff5e6" stroke="#ff7800" stroke-width="1" />
+        <rect x="-100" y="0" width="40" height="32" rx="5" ry="0" fill="url(#orange-gradient)" opacity="0.8" />
+        <text x="-80" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white">案例</text>
+        <text x="20" y="20" font-family="Arial, sans-serif" font-size="12" fill="#333">课程案例设计应用</text>
+      </g>
+      
+      <!-- 实验教学 -->
+      <g class="float" style="animation-delay: 0.6s;" transform="translate(0, 42)">
+        <rect x="-100" y="0" width="200" height="32" rx="5" ry="5" fill="#f0f6ff" stroke="#1a5fb4" stroke-width="1" />
+        <rect x="-100" y="0" width="40" height="32" rx="5" ry="0" fill="url(#primary-gradient)" opacity="0.8" />
+        <text x="-80" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white">实验</text>
+        <text x="20" y="20" font-family="Arial, sans-serif" font-size="12" fill="#333">实验教学模块开发</text>
+      </g>
+      
+      <!-- 教材编写 -->
+      <g class="float" style="animation-delay: 0.7s;" transform="translate(0, 84)">
+        <rect x="-100" y="0" width="200" height="32" rx="5" ry="5" fill="#fef1f8" stroke="#9141ac" stroke-width="1" />
+        <rect x="-100" y="0" width="40" height="32" rx="5" ry="0" fill="url(#purple-gradient)" opacity="0.8" />
+        <text x="-80" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white">教材</text>
+        <text x="20" y="20" font-family="Arial, sans-serif" font-size="12" fill="#333">教材与教辅资料编写</text>
+      </g>
+      
+      <!-- 创新实践 -->
+      <g class="float" style="animation-delay: 0.8s;" transform="translate(0, 126)">
+        <rect x="-100" y="0" width="200" height="32" rx="5" ry="5" fill="#e6f7ed" stroke="#26a269" stroke-width="1" />
+        <rect x="-100" y="0" width="40" height="32" rx="5" ry="0" fill="#26a269" opacity="0.8" />
+        <text x="-80" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white">实践</text>
+        <text x="20" y="20" font-family="Arial, sans-serif" font-size="12" fill="#333">学生创新实践指导</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- 连接线与数据流动效果 -->
+  <!-- 科研到中心 -->
+  <path d="M 220,250 C 270,250 300,220 350,250" fill="none" stroke="url(#primary-gradient)" stroke-width="2" class="grow-line" />
+  
+  <!-- 中心到教学 -->
+  <path d="M 450,250 C 500,250 530,220 580,250" fill="none" stroke="url(#orange-gradient)" stroke-width="2" class="grow-line" style="animation-delay: 1.2s;" />
+  
+  <!-- 数据流动粒子 -->
+  <g class="flow" style="animation-delay: 0.5s;">
+    <circle cx="250" cy="250" r="3" fill="#1a5fb4" />
+    <circle cx="280" cy="245" r="3" fill="#1a5fb4" />
+    <circle cx="310" cy="247" r="3" fill="#1a5fb4" />
+    <circle cx="340" cy="250" r="3" fill="#1a5fb4" />
+  </g>
+  
+  <g class="flow" style="animation-delay: 1.5s;">
+    <circle cx="460" cy="250" r="3" fill="#ff7800" />
+    <circle cx="490" cy="245" r="3" fill="#ff7800" />
+    <circle cx="520" cy="247" r="3" fill="#ff7800" />
+    <circle cx="550" cy="250" r="3" fill="#ff7800" />
+  </g>
+  
+  <!-- 底部成果展示 -->
+  <g class="fade-in" style="animation-delay: 2s;" transform="translate(400, 430)">
+    <rect x="-300" y="-40" width="600" height="80" rx="10" ry="10" fill="white" filter="url(#shadow)" />
+    <text x="0" y="-15" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#333" font-weight="bold">融合成果</text>
+    
+    <!-- 成果统计 -->
+    <g transform="translate(-200, 15)">
+      <circle cx="0" cy="0" r="25" fill="url(#primary-gradient)" opacity="0.2" />
+      <text x="0" y="5" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1a5fb4" font-weight="bold">96%</text>
+      <text x="0" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#333">教学质量提升</text>
+    </g>
+    
+    <g transform="translate(-67, 15)">
+      <circle cx="0" cy="0" r="25" fill="url(#purple-gradient)" opacity="0.2" />
+      <text x="0" y="5" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#9141ac" font-weight="bold">82%</text>
+      <text x="0" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#333">学生参与度</text>
+    </g>
+    
+    <g transform="translate(67, 15)">
+      <circle cx="0" cy="0" r="25" fill="url(#orange-gradient)" opacity="0.2" />
+      <text x="0" y="5" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#ff7800" font-weight="bold">78%</text>
+      <text x="0" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#333">创新能力提升</text>
+    </g>
+    
+    <g transform="translate(200, 15)">
+      <circle cx="0" cy="0" r="25" fill="#26a269" opacity="0.2" />
+      <text x="0" y="5" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#26a269" font-weight="bold">93%</text>
+      <text x="0" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#333">科研反馈改进</text>
+    </g>
+  </g>
+  
+  <!-- 装饰性微粒 -->
+  <g opacity="0.5">
+    <circle cx="50" cy="50" r="3" fill="#1a5fb4" class="pulse" />
+    <circle cx="70" cy="60" r="2" fill="#9141ac" class="pulse" />
+    <circle cx="40" cy="75" r="4" fill="#ff7800" class="pulse" />
+    
+    <circle cx="750" cy="50" r="3" fill="#1a5fb4" class="pulse" />
+    <circle cx="730" cy="60" r="2" fill="#9141ac" class="pulse" />
+    <circle cx="760" cy="75" r="4" fill="#ff7800" class="pulse" />
+    
+    <circle cx="50" cy="450" r="3" fill="#1a5fb4" class="pulse" />
+    <circle cx="70" cy="435" r="2" fill="#9141ac" class="pulse" />
+    <circle cx="40" cy="420" r="4" fill="#ff7800" class="pulse" />
+    
+    <circle cx="750" cy="450" r="3" fill="#1a5fb4" class="pulse" />
+    <circle cx="730" cy="435" r="2" fill="#9141ac" class="pulse" />
+    <circle cx="760" cy="420" r="4" fill="#ff7800" class="pulse" />
+  </g>
+</svg> 

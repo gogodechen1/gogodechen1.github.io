@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f5ff" />
+      <stop offset="100%" stop-color="#e1ebff" />
+    </linearGradient>
+    <linearGradient id="primary-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a5fb4" />
+      <stop offset="100%" stop-color="#1552a0" />
+    </linearGradient>
+    <linearGradient id="accent-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff7800" />
+      <stop offset="100%" stop-color="#e65c00" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="2" stdDeviation="5" flood-color="#00000033" />
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="600" height="450" fill="url(#bg-gradient)" />
+
+  <!-- 主要图形: 中间连接的数据节点 -->
+  <!-- 中心节点 -->
+  <circle cx="300" cy="200" r="70" fill="white" stroke="url(#primary-gradient)" stroke-width="3" filter="url(#shadow)" />
+  <text x="300" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#1a5fb4" font-weight="bold">多源数据聚合</text>
+
+  <!-- 围绕的数据节点 -->
+  <!-- 节点1: 专利 -->
+  <circle cx="140" cy="120" r="40" fill="white" stroke="url(#primary-gradient)" stroke-width="2" filter="url(#shadow)" />
+  <text x="140" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a5fb4">专利数据</text>
+  <line x1="182" y1="143" x2="250" y2="175" stroke="url(#primary-gradient)" stroke-width="3" stroke-dasharray="5,5" />
+
+  <!-- 节点2: 学术文献 -->
+  <circle cx="140" cy="300" r="40" fill="white" stroke="url(#primary-gradient)" stroke-width="2" filter="url(#shadow)" />
+  <text x="140" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a5fb4">学术文献</text>
+  <line x1="182" y1="277" x2="250" y2="225" stroke="url(#primary-gradient)" stroke-width="3" stroke-dasharray="5,5" />
+
+  <!-- 节点3: 企业信息 -->
+  <circle cx="460" cy="120" r="40" fill="white" stroke="url(#primary-gradient)" stroke-width="2" filter="url(#shadow)" />
+  <text x="460" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a5fb4">企业信息</text>
+  <line x1="418" y1="143" x2="350" y2="175" stroke="url(#primary-gradient)" stroke-width="3" stroke-dasharray="5,5" />
+
+  <!-- 节点4: 行业报告 -->
+  <circle cx="460" cy="300" r="40" fill="white" stroke="url(#primary-gradient)" stroke-width="2" filter="url(#shadow)" />
+  <text x="460" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1a5fb4">行业报告</text>
+  <line x1="418" y1="277" x2="350" y2="225" stroke="url(#primary-gradient)" stroke-width="3" stroke-dasharray="5,5" />
+
+  <!-- 动态连接线 - 突出显示 -->
+  <line x1="300" y1="270" x2="300" y2="350" stroke="url(#accent-gradient)" stroke-width="4" stroke-linecap="round" />
+  <circle cx="300" cy="350" r="30" fill="url(#accent-gradient)" filter="url(#shadow)" />
+  <text x="300" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="bold">智能分析</text>
+</svg> 

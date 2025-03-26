@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>报告预览 - 聚研AI</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="../index.html" class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+        聚研AI
+      </a>
+      
+      <div style="display: flex; align-items: center;">
+        <div style="margin-right: 20px;">
+          <span style="font-weight: 500;">报告已生成</span>
+        </div>
+        
+        <div style="display: flex; align-items: center;">
+          <span style="color: #666; margin-right: 10px;">Demo教师（demo_teacher）</span>
+          <div style="width: 36px; height: 36px; border-radius: 50%; background-color: #e9eff8; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-user" style="color: #1a5fb4;"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="preview-page">
+    <div class="container">
+      <!-- 步骤导航 -->
+      <div class="step-nav">
+        <div class="step-item completed">
+          <div class="step-number">
+            <i class="fas fa-check"></i>
+          </div>
+          <div class="step-name">输入参数</div>
+        </div>
+        <div class="step-item completed">
+          <div class="step-number">
+            <i class="fas fa-check"></i>
+          </div>
+          <div class="step-name">确认</div>
+        </div>
+        <div class="step-item completed">
+          <div class="step-number">
+            <i class="fas fa-check"></i>
+          </div>
+          <div class="step-name">生成</div>
+        </div>
+        <div class="step-item active">
+          <div class="step-number">4</div>
+          <div class="step-name">完成</div>
+        </div>
+      </div>
+
+      <!-- 报告预览区域 -->
+      <div class="preview-container">
+        <!-- 报告结构导航 -->
+        <div class="report-structure">
+          <h4 class="structure-heading">报告结构</h4>
+          <ul class="structure-list">
+            <li class="structure-item">
+              <a href="#section1">1. 背景分析</a>
+            </li>
+            <li class="structure-item sub-item">
+              <a href="#section1-1">1.1 研究背景</a>
+            </li>
+            <li class="structure-item sub-item">
+              <a href="#section1-2">1.2 意义分析</a>
+            </li>
+            <li class="structure-item">
+              <a href="#section2">2. 技术趋势</a>
+            </li>
+            <li class="structure-item sub-item">
+              <a href="#section2-1">2.1 发展历程</a>
+            </li>
+            <li class="structure-item sub-item">
+              <a href="#section2-2">2.2 最新进展</a>
+            </li>
+            <li class="structure-item">
+              <a href="#section3">3. 竞争格局</a>
+            </li>
+            <li class="structure-item sub-item">
+              <a href="#section3-1">3.1 机构分析</a>
+            </li>
+            <li class="structure-item sub-item">
+              <a href="#section3-2">3.2 专利分布</a>
+            </li>
+            <li class="structure-item">
+              <a href="#section4">4. 应用场景</a>
+            </li>
+            <li class="structure-item">
+              <a href="#section5">5. 研究建议</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 报告内容 -->
+        <div class="report-content">
+          <div style="text-align: center; margin-bottom: 40px;">
+            <h1 style="font-size: 24px; margin-bottom: 15px; color: var(--primary-color);">产业人才供需报告</h1>
+            <h2 style="font-size: 30px; margin-bottom: 30px;">机电一体化技术发展趋势分析</h2>
+            <p style="color: #666;">2024 聚研AI</p>
+          </div>
+
+          <div style="margin-bottom: 30px;">
+            <h2 id="section2" style="font-size: 20px; color: var(--primary-color); margin-bottom: 20px;">2. 技术趋势</h2>
+            <h3 id="section2-2" style="font-size: 18px; color: var(--text-color); margin-bottom: 15px;">2.2 最新进展</h3>
+            
+            <p style="margin-bottom: 15px; line-height: 1.6;">近五年来，机电一体化技术在智能制造领域取得了显著进展。根据数据分析，2022年相关专利申请量同比增长53%，主要集中在人机协作、柔性制造和数字孪生三个方向。</p>
+            
+            <p style="margin-bottom: 15px; line-height: 1.6;">如图2-4所示，在人机协作领域，安全交互技术成为研究热点，collaborative robot（协作机器人）相关技术专利增长最为显著，达到217%的年增长率。主要技术创新点包括：</p>
+            
+            <ol style="margin-left: 20px; margin-bottom: 20px;">
+              <li style="margin-bottom: 10px;">基于计算机视觉的实时动作识别</li>
+              <li style="margin-bottom: 10px;">触觉反馈的精准力控系统</li>
+              <li style="margin-bottom: 10px;">自适应安全区域划分算法</li>
+            </ol>
+            
+            <div style="background-color: var(--bg-color); padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+              <div style="width: 100%; height: 250px; background-color: #e9eff8; display: flex; justify-content: center; align-items: center; border-radius: 4px; margin-bottom: 10px;">
+                <div style="text-align: center;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                  </svg>
+                  <p style="color: #1a5fb4;">人机协作技术专利增长趋势图</p>
+                </div>
+              </div>
+              <p style="color: #666; font-size: 14px;">图2-4: 2018-2023年人机协作技术专利申请量年度增长率</p>
+            </div>
+            
+            <p style="margin-bottom: 15px; line-height: 1.6;">在柔性制造方面，模块化设计和快速换型技术得到广泛应用，适应小批量、多品种的生产需求。数字孪生技术则将虚拟仿真与实际生产深度融合，为产品设计、工艺优化和设备维护提供全新思路。</p>
+            
+            <div style="background-color: var(--primary-color); color: white; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+              <h4 style="margin-bottom: 10px; font-size: 16px;">AI分析洞察</h4>
+              <p style="line-height: 1.6;">智能传感器与边缘计算的结合将成为未来3-5年机电一体化发展的关键技术点，基于实时数据处理的决策系统有望成为下一个专利热点领域。</p>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 30px;">
+            <h2 id="section3" style="font-size: 20px; color: var(--primary-color); margin-bottom: 20px;">3. 竞争格局</h2>
+            <h3 id="section3-1" style="font-size: 18px; color: var(--text-color); margin-bottom: 15px;">3.1 机构分析</h3>
+            
+            <p style="margin-bottom: 15px; line-height: 1.6;">通过对全球5000多家企业和科研机构的专利与论文分析，发现机电一体化领域主要由三类机构主导：装备制造企业、自动化解决方案提供商和高校研究机构。</p>
+            
+            <div style="background-color: var(--bg-color); padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+              <div style="width: 100%; height: 250px; background-color: #e9eff8; display: flex; justify-content: center; align-items: center; border-radius: 4px; margin-bottom: 10px;">
+                <div style="text-align: center;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                    <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                    <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                  </svg>
+                  <p style="color: #1a5fb4;">机构专利分布饼图</p>
+                </div>
+              </div>
+              <p style="color: #666; font-size: 14px;">图3-1: 机电一体化技术专利申请机构类型分布</p>
+            </div>
+            
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+              <thead>
+                <tr style="background-color: var(--primary-color); color: white;">
+                  <th style="padding: 10px; text-align: left; border: 1px solid #ccc;">排名</th>
+                  <th style="padding: 10px; text-align: left; border: 1px solid #ccc;">机构名称</th>
+                  <th style="padding: 10px; text-align: left; border: 1px solid #ccc;">专利数量</th>
+                  <th style="padding: 10px; text-align: left; border: 1px solid #ccc;">主要技术方向</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">1</td>
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">西门子</td>
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">487</td>
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">数字孪生、自适应控制</td>
+                </tr>
+                <tr style="background-color: rgba(246, 245, 244, 0.5);">
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">2</td>
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">ABB</td>
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">412</td>
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">机器人协作、工业自动化</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">3</td>
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">发那科</td>
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">376</td>
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">高精度控制、柔性制造</td>
+                </tr>
+                <tr style="background-color: rgba(246, 245, 244, 0.5);">
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">4</td>
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">三菱电机</td>
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">352</td>
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">系统集成、节能技术</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">5</td>
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">哈尔滨工业大学</td>
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">289</td>
+                  <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">智能传感、预测性维护</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 报告操作 -->
+      <div class="preview-actions">
+        <div class="action-group">
+          <button class="action-btn download-btn">
+            <i class="fas fa-download" style="margin-right: 5px;"></i> 下载报告
+          </button>
+          <button class="action-btn save-btn">
+            <i class="fas fa-save" style="margin-right: 5px;"></i> 保存到我的资源
+          </button>
+          <button class="action-btn share-btn">
+            <i class="fas fa-share-alt" style="margin-right: 5px;"></i> 分享
+          </button>
+        </div>
+        
+        <div class="format-group">
+          <div>
+            <span class="format-label">格式:</span>
+            <select class="format-select">
+              <option value="word" selected>Word</option>
+              <option value="pdf">PDF</option>
+              <option value="ppt">PPT</option>
+            </select>
+          </div>
+          
+          <div>
+            <span class="format-label">语言:</span>
+            <select class="format-select">
+              <option value="chinese" selected>中文</option>
+              <option value="english">英文</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <div class="custom-options">
+        <label class="custom-option">
+          <input type="checkbox" name="includeData">
+          <span>包含原始数据</span>
+        </label>
+        <label class="custom-option">
+          <input type="checkbox" name="includeCharts">
+          <span>附加图表源文件</span>
+        </label>
+      </div>
+      
+      <!-- 延伸功能 -->
+      <div class="extend-actions">
+        <h3>延伸功能</h3>
+        <div class="extend-buttons">
+          <button class="extend-btn">
+            <i class="fas fa-chalkboard-teacher" style="margin-right: 5px;"></i> 创建相关教学案例
+          </button>
+          <button class="extend-btn">
+            <i class="fas fa-file-alt" style="margin-right: 5px;"></i> 申请课题辅助
+          </button>
+          <button class="extend-btn">
+            <i class="fas fa-sync-alt" style="margin-right: 5px;"></i> 更新订阅
+          </button>
+        </div>
+      </div>
+      
+      <!-- 底部操作 -->
+      <div class="bottom-actions">
+        <button class="cta-btn" style="background-color: var(--secondary-color);">
+          <i class="fas fa-plus" style="margin-right: 5px;"></i> 新建分析任务
+        </button>
+        <button class="cta-btn" style="background-color: white; color: var(--text-color); border: 1px solid var(--border-color);">
+          <i class="fas fa-home" style="margin-right: 5px;"></i> 返回首页
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+</html> 

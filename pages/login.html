@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录 - 聚研AI</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="login-body">
+  <div class="login-page">
+    <div class="login-container">
+      <!-- 登录卡片 -->
+      <div class="login-card">
+        <!-- 头部 -->
+        <div class="login-header">
+          <a href="../index.html" class="login-logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+            <span>聚研AI</span>
+          </a>
+          <h1 class="login-title">欢迎回来</h1>
+          <p class="login-subtitle">请登录您的账户以继续使用聚研AI平台</p>
+        </div>
+        
+        <!-- 登录表单 -->
+        <form class="login-form" method="POST" action="dashboard.html" onsubmit="return validateLogin(event)">
+          <div class="form-group">
+            <label for="username">用户名/手机号</label>
+            <div class="input-with-icon">
+              <i class="fas fa-user"></i>
+              <input type="text" id="username" name="username" placeholder="请输入用户名或手机号" value="demo_teacher" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="password">密码</label>
+            <div class="input-with-icon">
+              <i class="fas fa-lock"></i>
+              <input type="password" id="password" name="password" placeholder="请输入密码" value="123456" required>
+              <button type="button" class="toggle-password">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div class="form-extras">
+            <label class="remember-me">
+              <input type="checkbox" name="remember" checked>
+              <span>记住我</span>
+            </label>
+            <a href="#" class="forgot-password">忘记密码？</a>
+          </div>
+          
+          <button type="submit" class="login-button">登录</button>
+          <div id="login-error" class="error-message" style="display: none; color: red; text-align: center; margin-top: 10px;">账号或密码错误，请使用测试账号：demo_teacher/123456</div>
+        </form>
+        
+        <!-- 社交登录 -->
+        <div class="social-login">
+          <div class="social-divider">
+            <span>或通过以下方式登录</span>
+          </div>
+          
+          <div class="social-buttons">
+            <button class="social-button wechat">
+              <i class="fab fa-weixin"></i>
+              <span>微信登录</span>
+            </button>
+            
+            <button class="social-button other">
+              <i class="fas fa-user-circle"></i>
+              <span>其他方式</span>
+            </button>
+            
+            <button class="social-button insti">
+              <i class="fas fa-university"></i>
+              <span>机构认证</span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- 注册链接 -->
+        <div class="register-link">
+          <p>还没有账号？<a href="#">立即注册</a></p>
+        </div>
+      </div>
+      
+      <!-- 右侧信息 -->
+      <div class="login-info">
+        <div class="info-content">
+          <h2>教育数字化转型的<br>智能助手</h2>
+          
+          <div class="info-features">
+            <div class="info-feature">
+              <div class="feature-icon">
+                <i class="fas fa-search"></i>
+              </div>
+              <div class="feature-text">
+                <h3>智能文献分析</h3>
+                <p>快速获取学科前沿信息</p>
+              </div>
+            </div>
+            
+            <div class="info-feature">
+              <div class="feature-icon">
+                <i class="fas fa-file-alt"></i>
+              </div>
+              <div class="feature-text">
+                <h3>教学案例生成</h3>
+                <p>轻松创建实用教学资源</p>
+              </div>
+            </div>
+            
+            <div class="info-feature">
+              <div class="feature-icon">
+                <i class="fas fa-brain"></i>
+              </div>
+              <div class="feature-text">
+                <h3>产教融合分析</h3>
+                <p>深度连接教育与产业</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="user-testimonial">
+            <div class="quote-icon">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            <p class="quote-text">「聚研AI帮我节省了大量查找文献的时间，让我能将更多精力投入到教学和课题研究中」</p>
+            <div class="quote-author">
+              <div class="author-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="author-info">
+                <p class="author-name">张教授</p>
+                <p class="author-title">机械工程学院</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script>
+  function validateLogin(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    
+    if (username === 'demo_teacher' && password === '123456') {
+      window.location.href = 'dashboard.html';
+      return false;
+    } else {
+      document.getElementById('login-error').style.display = 'block';
+      return false;
+    }
+  }
+  </script>
+</body>
+</html> 

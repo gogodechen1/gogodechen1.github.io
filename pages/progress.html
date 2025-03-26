@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生成进度 - 聚研AI</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="../index.html" class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+        聚研AI
+      </a>
+      
+      <div style="display: flex; align-items: center;">
+        <div style="margin-right: 20px;">
+          <span style="font-weight: 500;">报告生成中</span>
+        </div>
+        
+        <div style="display: flex; align-items: center;">
+          <span style="color: #666; margin-right: 10px;">Demo教师（demo_teacher）</span>
+          <div style="width: 36px; height: 36px; border-radius: 50%; background-color: #e9eff8; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-user" style="color: #1a5fb4;"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="progress-page">
+    <div class="container">
+      <!-- 步骤导航 -->
+      <div class="step-nav">
+        <div class="step-item completed">
+          <div class="step-number">
+            <i class="fas fa-check"></i>
+          </div>
+          <div class="step-name">输入参数</div>
+        </div>
+        <div class="step-item completed">
+          <div class="step-number">
+            <i class="fas fa-check"></i>
+          </div>
+          <div class="step-name">确认</div>
+        </div>
+        <div class="step-item active">
+          <div class="step-number">3</div>
+          <div class="step-name">生成</div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <div class="step-name">完成</div>
+        </div>
+      </div>
+
+      <!-- 进度指示器 -->
+      <div class="progress-container">
+        <div class="progress-indicator">
+          <div class="progress-circle">
+            <svg viewBox="0 0 36 36" class="circular-chart">
+              <path class="circle-bg" d="M18 2.0845
+                a 15.9155 15.9155 0 0 1 0 31.831
+                a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+              <path class="circle" stroke-dasharray="65, 100" d="M18 2.0845
+                a 15.9155 15.9155 0 0 1 0 31.831
+                a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+              <text x="18" y="20.35" class="progress-value">65%</text>
+            </svg>
+          </div>
+          <p class="progress-message">报告正在生成中，请稍候...</p>
+        </div>
+      </div>
+
+      <!-- 当前进度详情 -->
+      <div class="progress-details">
+        <h3 class="details-title">当前进度</h3>
+        
+        <div class="stage-list">
+          <div class="stage-item completed">
+            <i class="fas fa-check-circle"></i>
+            <div class="stage-info">
+              <div class="stage-name">数据收集</div>
+              <div class="stage-progress">100%</div>
+            </div>
+          </div>
+          
+          <div class="stage-item completed">
+            <i class="fas fa-check-circle"></i>
+            <div class="stage-info">
+              <div class="stage-name">文献分析</div>
+              <div class="stage-progress">100%</div>
+            </div>
+          </div>
+          
+          <div class="stage-item completed">
+            <i class="fas fa-check-circle"></i>
+            <div class="stage-info">
+              <div class="stage-name">专利数据挖掘</div>
+              <div class="stage-progress">100%</div>
+            </div>
+          </div>
+          
+          <div class="stage-item in-progress">
+            <i class="fas fa-spinner fa-spin"></i>
+            <div class="stage-info">
+              <div class="stage-name">趋势图表生成</div>
+              <div class="stage-progress">80%</div>
+            </div>
+          </div>
+          
+          <div class="stage-item pending">
+            <i class="far fa-circle"></i>
+            <div class="stage-info">
+              <div class="stage-name">报告撰写与排版</div>
+              <div class="stage-progress">0%</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="time-remaining">
+          <i class="far fa-clock"></i>
+          <span>预计剩余时间：<strong>3分钟</strong></span>
+        </div>
+      </div>
+
+      <!-- 实时洞察 -->
+      <div class="insights-container">
+        <h3 class="insights-title">实时洞察</h3>
+        
+        <div class="insights-list">
+          <div class="insight-item">
+            <i class="fas fa-chart-line"></i>
+            <p>发现相关专利523项，文献348篇</p>
+          </div>
+          
+          <div class="insight-item">
+            <i class="fas fa-lightbulb"></i>
+            <p>机电一体化技术在智能制造领域的专利数量在2020年后呈现快速增长趋势</p>
+          </div>
+          
+          <div class="insight-item">
+            <i class="fas fa-users"></i>
+            <p>西门子、ABB、发那科是该领域最活跃的专利申请机构</p>
+          </div>
+          
+          <div class="insight-item">
+            <i class="fas fa-globe-asia"></i>
+            <p>中国在此领域专利申请量排名第一，但核心专利仍集中在欧美和日本</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 通知信息 -->
+      <div class="notification-box">
+        <i class="fas fa-bell"></i>
+        <p>您可以离开此页面，报告生成完成后我们将通过邮件通知您。</p>
+      </div>
+
+      <!-- 底部操作 -->
+      <div class="action-buttons">
+        <a href="#" class="cancel-btn">
+          <i class="fas fa-times"></i>
+          取消任务
+        </a>
+        <a href="#" class="bg-process-btn">
+          <i class="fas fa-external-link-alt"></i>
+          在后台运行
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>创建新任务 - 聚研AI</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"></script>
+  <style>
+    :root {
+      --primary-color: #1a5fb4;
+      --primary-light: #3584e4;
+      --primary-dark: #15417e;
+      --accent-color: #ff7800;
+      --text-dark: #333333;
+      --text-medium: #666666;
+      --text-light: #999999;
+      --bg-light: #f8f9fa;
+      --bg-medium: #e9ecef;
+      --border-color: #dee2e6;
+      --success-color: #28a745;
+      --warning-color: #ffc107;
+      --danger-color: #dc3545;
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --transition-speed: 0.3s;
+    }
+    
+    .task-creator-container {
+      display: flex;
+      background-color: var(--bg-light);
+      min-height: calc(100vh - 70px);
+    }
+    
+    .task-sidebar {
+      width: 260px;
+      background: white;
+      border-right: 1px solid var(--border-color);
+      padding: 30px 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+      position: relative;
+      z-index: 10;
+    }
+    
+    .task-content {
+      flex: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+    
+    .task-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      padding: 30px;
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .task-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    
+    .task-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-right: 16px;
+      box-shadow: 0 4px 10px rgba(26, 95, 180, 0.2);
+    }
+    
+    .task-title h2 {
+      font-size: 22px;
+      color: var(--text-dark);
+      margin: 0 0 4px 0;
+    }
+    
+    .task-title p {
+      font-size: 14px;
+      color: var(--text-medium);
+      margin: 0;
+    }
+    
+    .step-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      width: 100px;
+      z-index: 1;
+    }
+    
+    .step-number {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: var(--bg-medium);
+      color: var(--text-medium);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 2;
+      transition: all var(--transition-speed);
+    }
+    
+    .step-name {
+      font-size: 14px;
+      color: var(--text-medium);
+      text-align: center;
+      transition: all var(--transition-speed);
+    }
+    
+    .step-item.active .step-number {
+      background-color: var(--primary-color);
+      color: white;
+      box-shadow: 0 0 0 5px rgba(26, 95, 180, 0.2);
+    }
+    
+    .step-item.active .step-name {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+    
+    .step-item.completed .step-number {
+      background-color: var(--success-color);
+      color: white;
+    }
+    
+    .step-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 18px;
+      right: -50%;
+      width: 100%;
+      height: 2px;
+      background-color: var(--bg-medium);
+      z-index: 0;
+    }
+    
+    .step-item.completed:not(:last-child)::after,
+    .step-item.active:not(:last-child)::after {
+      background-color: var(--primary-light);
+    }
+    
+    .form-group {
+      margin-bottom: 25px;
+    }
+    
+    .form-group label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+      font-size: 15px;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 15px;
+      transition: all var(--transition-speed);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+      background-color: white;
+    }
+    
+    .form-control:focus {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(26, 95, 180, 0.15);
+      outline: none;
+    }
+    
+    .form-control:hover:not(:focus) {
+      border-color: var(--text-light);
+    }
+    
+    .form-section {
+      margin-bottom: 30px;
+      position: relative;
+    }
+    
+    .form-section-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .form-section-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background-color: var(--primary-light);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      font-size: 16px;
+    }
+    
+    .form-section-title {
+      font-size: 18px;
+      color: var(--text-dark);
+      margin: 0;
+      font-weight: 600;
+    }
+    
+    .form-row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .form-col {
+      flex: 1;
+    }
+    
+    .checkbox-container {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 16px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+    
+    .checkbox-container input {
+      margin-right: 8px;
+    }
+    
+    .checkbox-text {
+      font-size: 14px;
+      color: var(--text-medium);
+    }
+    
+    .btn-section {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+    }
+    
+    .btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all var(--transition-speed);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      box-shadow: 0 4px 10px rgba(26, 95, 180, 0.2);
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(26, 95, 180, 0.3);
+    }
+    
+    .btn-secondary {
+      background-color: var(--bg-medium);
+      color: var(--text-medium);
+      border: 1px solid var(--border-color);
+    }
+    
+    .btn-secondary:hover {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+    }
+    
+    .btn i {
+      margin-right: 8px;
+    }
+    
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      background-color: var(--primary-light);
+      color: white;
+      border-radius: 40px;
+      padding: 6px 12px;
+      font-size: 14px;
+      transition: all var(--transition-speed);
+    }
+    
+    .tag i {
+      margin-left: 8px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    
+    .tag:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .keyword-input {
+      display: flex;
+      align-items: center;
+    }
+    
+    .keyword-input input {
+      flex: 1;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    
+    .keyword-input button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      padding: 12px 16px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition-speed);
+    }
+    
+    .keyword-input button:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .help-text {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+    
+    .form-hint {
+      display: block;
+      font-size: 13px;
+      color: var(--text-light);
+      margin-top: 6px;
+    }
+    
+    .chart-container {
+      width: 100%;
+      height: 250px;
+      margin-top: 15px;
+    }
+    
+    .recommendation-card {
+      background-color: var(--bg-light);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 15px;
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    .recommendation-card h4 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 16px;
+      color: var(--text-dark);
+    }
+    
+    .recommendation-card p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-medium);
+    }
+  </style>
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="../index.html" class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+        聚研AI
+      </a>
+      
+      <div style="display: flex; align-items: center;">
+        <div style="margin-right: 20px;">
+          <span style="font-weight: 500;">创建新任务</span>
+        </div>
+        
+        <div style="display: flex; align-items: center;">
+          <span style="color: #666; margin-right: 10px;">Demo教师（demo_teacher）</span>
+          <div style="width: 36px; height: 36px; border-radius: 50%; background-color: #e9eff8; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-user" style="color: #1a5fb4;"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 任务创建界面 -->
+  <div class="task-creator-container">
+    <!-- 左侧边栏 -->
+    <div class="task-sidebar">
+      <div style="margin-bottom: 20px;">
+        <h3 style="font-size: 16px; margin: 0 0 15px 0; color: var(--text-dark);">
+          <i class="fas fa-info-circle" style="color: var(--primary-color); margin-right: 8px;"></i>
+          创建指南
+        </h3>
+        <p style="font-size: 14px; color: var(--text-medium); line-height: 1.5; margin: 0 0 15px 0;">
+          设置合适的研究参数可以帮助AI更精准地生成专业报告。请填写必要信息并仔细选择分析维度。
+        </p>
+        <div style="background-color: var(--bg-light); border-radius: 8px; padding: 12px; margin-bottom: 20px;">
+          <h4 style="font-size: 14px; margin: 0 0 8px 0; color: var(--text-dark);">
+            <i class="fas fa-lightbulb" style="color: var(--warning-color); margin-right: 6px;"></i>
+            提示
+          </h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--text-medium);">
+            <li style="margin-bottom: 6px;">使用精确的关键词提高相关性</li>
+            <li style="margin-bottom: 6px;">选择多个分析维度获得全面报告</li>
+            <li style="margin-bottom: 0;">合理设置时间范围获取最新研究</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div style="margin-bottom: 30px;">
+        <h3 style="font-size: 16px; margin: 0 0 15px 0; color: var(--text-dark);">
+          <i class="fas fa-chart-pie" style="color: var(--primary-color); margin-right: 8px;"></i>
+          数据预览
+        </h3>
+        <div style="background-color: var(--bg-light); border-radius: 8px; padding: 15px;">
+          <div style="font-size: 13px; color: var(--text-medium); margin-bottom: 10px; display: flex; justify-content: space-between;">
+            <span>物流相关专利数量</span>
+            <span style="color: var(--primary-color); font-weight: 500;">5,782</span>
+          </div>
+          <div style="width: 100%; height: 120px;">
+            <svg viewBox="0 0 200 40" style="width: 100%; height: 100%;">
+              <path d="M0,40 L10,35 L20,32 L30,30 L40,25 L50,28 L60,24 L70,20 L80,18 L90,15 L100,13 L110,10 L120,12 L130,8 L140,10 L150,7 L160,5 L170,8 L180,4 L190,2 L200,0" fill="none" stroke="rgba(26, 95, 180, 0.5)" stroke-width="2"></path>
+              <path d="M0,40 L10,35 L20,32 L30,30 L40,25 L50,28 L60,24 L70,20 L80,18 L90,15 L100,13 L110,10 L120,12 L130,8 L140,10 L150,7 L160,5 L170,8 L180,4 L190,2 L200,0" fill="url(#gradient)" stroke="none" opacity="0.3"></path>
+              <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#1a5fb4" />
+                  <stop offset="100%" stop-color="#ffffff" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div style="margin-top: 15px; display: flex; justify-content: space-between; font-size: 13px; color: var(--text-medium);">
+            <span>2020</span>
+            <span>2025</span>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <h3 style="font-size: 16px; margin: 0 0 15px 0; color: var(--text-dark);">
+          <i class="fas fa-clock" style="color: var(--primary-color); margin-right: 8px;"></i>
+          预计完成时间
+        </h3>
+        <div style="display: flex; align-items: center; justify-content: space-between; background-color: var(--bg-light); border-radius: 8px; padding: 15px;">
+          <div style="font-size: 14px; color: var(--text-medium);">标准报告</div>
+          <div style="font-size: 16px; color: var(--text-dark); font-weight: 500;">约5分钟</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 主要内容区 -->
+    <div class="task-content">
+      <!-- 步骤导航 -->
+      <div class="step-nav">
+        <div class="step-item active">
+          <div class="step-number">1</div>
+          <div class="step-name">输入参数</div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-name">确认</div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-name">生成</div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <div class="step-name">完成</div>
+        </div>
+      </div>
+
+      <!-- 任务标题卡片 -->
+      <div class="task-card">
+        <div class="task-header">
+          <div class="task-icon">
+            <i class="fas fa-cube"></i>
+          </div>
+          <div class="task-title">
+            <h2>创建物流运输配送技术分析任务</h2>
+            <p>设置研究参数，生成专业的物流运输配送技术专利分析报告</p>
+          </div>
+        </div>
+        <!-- 参数表单开始 -->
+        <form id="taskForm">
+          <!-- 基本信息 -->
+          <div class="form-section">
+            <div class="form-section-header">
+              <div class="form-section-icon">
+                <i class="fas fa-clipboard-list"></i>
+              </div>
+              <h3 class="form-section-title">基本信息</h3>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-col">
+                <div class="form-group">
+                  <label for="task-name">任务名称</label>
+                  <input type="text" id="task-name" name="task-name" class="form-control" placeholder="请输入任务名称" value="物流运输配送技术2025最新技术专利研究" required>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-col">
+                <div class="form-group">
+                  <label for="task-type">任务类型</label>
+                  <select id="task-type" name="task-type" class="form-control" required>
+                    <option value="">请选择任务类型</option>
+                    <option value="project">课题申报</option>
+                    <option value="patent" selected>专利分析</option>
+                    <option value="teaching">教学案例</option>
+                    <option value="enterprise">企业分析</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-col">
+                <div class="form-group">
+                  <label for="discipline">学科领域</label>
+                  <input type="text" id="discipline" name="discipline" class="form-control" placeholder="请输入学科领域" value="交通运输工程、计算机科学、自动化控制" required>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 研究参数 -->
+          <div class="form-section">
+            <div class="form-section-header">
+              <div class="form-section-icon">
+                <i class="fas fa-search"></i>
+              </div>
+              <h3 class="form-section-title">研究参数</h3>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-col">
+                <div class="form-group">
+                  <label for="research-topic">研究主题</label>
+                  <input type="text" id="research-topic" name="research-topic" class="form-control" placeholder="输入研究的具体主题" value="物流运输配送技术2025最新技术专利趋势及应用研究" required>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-col">
+                <div class="form-group">
+                  <label for="keywords">关键词（最多5个）</label>
+                  <div class="tag-container" id="keyword-tags">
+                    <span class="tag">
+                      智能物流
+                      <i class="fas fa-times"></i>
+                    </span>
+                    <span class="tag">
+                      无人配送
+                      <i class="fas fa-times"></i>
+                    </span>
+                    <span class="tag">
+                      末端配送
+                      <i class="fas fa-times"></i>
+                    </span>
+                    <span class="tag">
+                      智能调度
+                      <i class="fas fa-times"></i>
+                    </span>
+                    <span class="tag">
+                      绿色物流
+                      <i class="fas fa-times"></i>
+                    </span>
+                  </div>
+                  <div class="keyword-input">
+                    <input type="text" id="keywords" name="keywords" class="form-control" placeholder="输入关键词并按回车添加" disabled>
+                    <button type="button" id="add-keyword-btn" disabled>
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                  <span class="form-hint" id="keyword-hint">已添加5个关键词（最大限制）</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-col">
+                <div class="form-group">
+                  <label>分析维度</label>
+                  <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+                    <label class="checkbox-container" style="padding: 10px 15px; background-color: var(--bg-light); border-radius: 8px; display: inline-flex; margin-bottom: 10px; border: 2px solid var(--primary-light);">
+                      <input type="checkbox" name="dimensions" value="trends" checked>
+                      <div style="margin-left: 10px;">
+                        <div style="font-weight: 500; color: var(--text-dark); font-size: 14px;">技术趋势</div>
+                        <div style="font-size: 12px; color: var(--text-medium);">分析技术发展趋势和方向</div>
+                      </div>
+                    </label>
+                    <label class="checkbox-container" style="padding: 10px 15px; background-color: var(--bg-light); border-radius: 8px; display: inline-flex; margin-bottom: 10px; border: 2px solid var(--primary-light);">
+                      <input type="checkbox" name="dimensions" value="competition" checked>
+                      <div style="margin-left: 10px;">
+                        <div style="font-weight: 500; color: var(--text-dark); font-size: 14px;">竞争格局</div>
+                        <div style="font-size: 12px; color: var(--text-medium);">研究主要企业专利分布</div>
+                      </div>
+                    </label>
+                    <label class="checkbox-container" style="padding: 10px 15px; background-color: var(--bg-light); border-radius: 8px; display: inline-flex; margin-bottom: 10px; border: 2px solid var(--primary-light);">
+                      <input type="checkbox" name="dimensions" value="applications" checked>
+                      <div style="margin-left: 10px;">
+                        <div style="font-weight: 500; color: var(--text-dark); font-size: 14px;">应用场景</div>
+                        <div style="font-size: 12px; color: var(--text-medium);">探索技术的应用方向</div>
+                      </div>
+                    </label>
+                    <label class="checkbox-container" style="padding: 10px 15px; background-color: var(--bg-light); border-radius: 8px; display: inline-flex; margin-bottom: 10px;">
+                      <input type="checkbox" name="dimensions" value="policy">
+                      <div style="margin-left: 10px;">
+                        <div style="font-weight: 500; color: var(--text-dark); font-size: 14px;">政策环境</div>
+                        <div style="font-size: 12px; color: var(--text-medium);">分析政策对技术的影响</div>
+                      </div>
+                    </label>
+                    <label class="checkbox-container" style="padding: 10px 15px; background-color: var(--bg-light); border-radius: 8px; display: inline-flex; margin-bottom: 10px; border: 2px solid var(--primary-light);">
+                      <input type="checkbox" name="dimensions" value="future" checked>
+                      <div style="margin-left: 10px;">
+                        <div style="font-weight: 500; color: var(--text-dark); font-size: 14px;">未来展望</div>
+                        <div style="font-size: 12px; color: var(--text-medium);">预测技术未来发展趋势</div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-col">
+                <div class="recommendation-card">
+                  <h4><i class="fas fa-lightbulb" style="color: var(--warning-color); margin-right: 8px;"></i>智能推荐</h4>
+                  <p>基于您的研究主题，推荐增加"自动化配送中心"和"智能分拣系统"关键词，这些是2025年物流技术专利的热点领域。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 数据源配置 -->
+          <div class="form-section">
+            <div class="form-section-header">
+              <div class="form-section-icon">
+                <i class="fas fa-database"></i>
+              </div>
+              <h3 class="form-section-title">数据源配置</h3>
+            </div>
+            
+            <!-- 新增：多源数据聚合功能展示 -->
+            <div style="background: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.7)), url('../img/illustrations/data-integration.svg'); background-size: cover; background-position: center; margin-bottom: 20px; border-radius: 12px; box-shadow: var(--card-shadow); overflow: hidden;">
+              <div style="padding: 25px; backdrop-filter: blur(5px);">
+                <div style="display: flex; align-items: flex-start; margin-bottom: 15px;">
+                  <div style="background-color: var(--primary-color); color: white; padding: 12px; border-radius: 12px; margin-right: 15px;">
+                    <i class="fas fa-link" style="font-size: 24px;"></i>
+                  </div>
+                  <div>
+                    <h4 style="margin: 0 0 8px 0; color: var(--text-dark); font-size: 18px; font-weight: 600;">
+                      <span style="position: relative; display: inline-block;">
+                        <span style="position: relative; z-index: 2; border-bottom: 3px solid var(--accent-color); background-color: rgba(255, 120, 0, 0.1); padding: 2px 8px; border-radius: 4px; font-weight: 700; color: var(--primary-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.1);">自动关联不同来源的数据</span>
+                        <span style="position: absolute; bottom: -2px; left: 0; width: 100%; height: 8px; background-color: rgba(255, 120, 0, 0.1); z-index: 1; border-radius: 0 0 4px 4px;"></span>
+                      </span>，形成完整的研究素材库
+                    </h4>
+                    <p style="margin: 0 0 15px 0; color: var(--text-medium); font-size: 14px; line-height: 1.5;">
+                      系统将自动整合多源数据，包括专利、学术文献、企业信息和行业报告，提供全面的研究视角。
+                    </p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                      <span style="display: inline-block; padding: 6px 12px; background-color: rgba(26, 95, 180, 0.1); border-radius: 20px; font-size: 13px; color: var(--primary-color);">
+                        <i class="fas fa-check-circle" style="margin-right: 5px;"></i>文献自动聚合
+                      </span>
+                      <span style="display: inline-block; padding: 6px 12px; background-color: rgba(26, 95, 180, 0.1); border-radius: 20px; font-size: 13px; color: var(--primary-color);">
+                        <i class="fas fa-check-circle" style="margin-right: 5px;"></i>专利深度关联
+                      </span>
+                      <span style="display: inline-block; padding: 6px 12px; background-color: rgba(26, 95, 180, 0.1); border-radius: 20px; font-size: 13px; color: var(--primary-color);">
+                        <i class="fas fa-check-circle" style="margin-right: 5px;"></i>企业数据整合
+                      </span>
+                      <span style="display: inline-block; padding: 6px 12px; background-color: rgba(26, 95, 180, 0.1); border-radius: 20px; font-size: 13px; color: var(--primary-color);">
+                        <i class="fas fa-check-circle" style="margin-right: 5px;"></i>政策法规关联
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- 新增：情报地图与技术分析展示 -->
+            <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+              <div style="flex: 1; background-color: white; border-radius: 12px; box-shadow: var(--card-shadow); overflow: hidden; border-top: 4px solid var(--accent-color);">
+                <div style="padding: 20px;">
+                  <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <i class="fas fa-project-diagram" style="font-size: 20px; color: var(--accent-color); margin-right: 10px;"></i>
+                    <h4 style="margin: 0; font-size: 16px; color: var(--text-dark);">
+                      <span style="position: relative; display: inline-block;">
+                        <span style="position: relative; z-index: 2; border-bottom: 3px solid var(--accent-color); background-color: rgba(255, 120, 0, 0.1); padding: 2px 8px; border-radius: 4px; font-weight: 700; color: var(--primary-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.1);">自动生成情报地图</span>
+                        <span style="position: absolute; bottom: -2px; left: 0; width: 100%; height: 8px; background-color: rgba(255, 120, 0, 0.1); z-index: 1; border-radius: 0 0 4px 4px;"></span>
+                      </span>
+                    </h4>
+                  </div>
+                  <p style="margin: 0 0 15px 0; font-size: 14px; color: var(--text-medium); line-height: 1.5;">
+                    AI引擎自动分析数据关联性，生成技术发展脉络图，直观展示研究主题演进路径。
+                  </p>
+                  <div style="background-color: var(--bg-light); border-radius: 8px; padding: 10px; text-align: center;">
+                    <img src="../img/charts/tech-map-preview.svg" onerror="this.src='https://placehold.co/300x150/e9ecef/1a5fb4?text=技术情报地图预览'" alt="技术情报地图预览" style="max-width: 100%; height: auto; border-radius: 4px;">
+                  </div>
+                </div>
+              </div>
+              <div style="flex: 1; background-color: white; border-radius: 12px; box-shadow: var(--card-shadow); overflow: hidden; border-top: 4px solid var(--accent-color);">
+                <div style="padding: 20px;">
+                  <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <i class="fas fa-chart-line" style="font-size: 20px; color: var(--accent-color); margin-right: 10px;"></i>
+                    <h4 style="margin: 0; font-size: 16px; color: var(--text-dark);">
+                      <span style="position: relative; display: inline-block;">
+                        <span style="position: relative; z-index: 2; border-bottom: 3px solid var(--accent-color); background-color: rgba(255, 120, 0, 0.1); padding: 2px 8px; border-radius: 4px; font-weight: 700; color: var(--primary-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.1);">技术动向和对比分析</span>
+                        <span style="position: absolute; bottom: -2px; left: 0; width: 100%; height: 8px; background-color: rgba(255, 120, 0, 0.1); z-index: 1; border-radius: 0 0 4px 4px;"></span>
+                      </span>
+                    </h4>
+                  </div>
+                  <p style="margin: 0 0 15px 0; font-size: 14px; color: var(--text-medium); line-height: 1.5;">
+                    自动生成技术趋势报告，对比分析不同技术路线优劣势，快速把握研究前沿。
+                  </p>
+                  <div style="background-color: var(--bg-light); border-radius: 8px; padding: 10px; text-align: center;">
+                    <img src="../img/charts/tech-comparison.svg" onerror="this.src='https://placehold.co/300x150/e9ecef/1a5fb4?text=技术对比分析预览'" alt="技术对比分析预览" style="max-width: 100%; height: auto; border-radius: 4px;">
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-col">
+                <div class="form-group">
+                  <label>专利数据来源</label>
+                  <div style="margin-top: 10px;">
+                    <div class="chart-container" id="patentSourceChart">
+                      <div style="height: 220px; display: flex; align-items: center; justify-content: center; position: relative;">
+                        <svg width="100%" height="100%" viewBox="0 0 400 220">
+                          <!-- 饼图 -->
+                          <g transform="translate(110, 110)">
+                            <!-- 中国专利 -->
+                            <path d="M0,0 L0,-100 A100,100 0 0,1 95,30 Z" fill="#3584e4" />
+                            <!-- 美国专利 -->
+                            <path d="M0,0 L95,30 A100,100 0 0,1 -60,80 Z" fill="#f9bc60" />
+                            <!-- 欧洲专利 -->
+                            <path d="M0,0 L-60,80 A100,100 0 0,1 -100,0 Z" fill="#e16162" />
+                            <!-- 日本专利 -->
+                            <path d="M0,0 L-100,0 A100,100 0 0,1 0,-100 Z" fill="#7b9e89" />
+                          </g>
+                          
+                          <!-- 图例 -->
+                          <g transform="translate(240, 75)">
+                            <rect x="0" y="0" width="16" height="16" fill="#3584e4" />
+                            <text x="26" y="13" font-size="14" fill="#333">中国专利 (45%)</text>
+                            
+                            <rect x="0" y="30" width="16" height="16" fill="#f9bc60" />
+                            <text x="26" y="43" font-size="14" fill="#333">美国专利 (28%)</text>
+                            
+                            <rect x="0" y="60" width="16" height="16" fill="#e16162" />
+                            <text x="26" y="73" font-size="14" fill="#333">欧洲专利 (15%)</text>
+                            
+                            <rect x="0" y="90" width="16" height="16" fill="#7b9e89" />
+                            <text x="26" y="103" font-size="14" fill="#333">日本专利 (12%)</text>
+                          </g>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-col">
+                <div class="form-group">
+                  <label>时间范围</label>
+                  <div style="display: flex; align-items: center; gap: 15px; margin-top: 10px;">
+                    <div style="position: relative; flex: 1;">
+                      <div style="position: absolute; top: -10px; left: 15px; padding: 0 5px; background-color: white; font-size: 12px; color: var(--text-light);">起始年份</div>
+                      <input type="number" min="2000" max="2025" value="2020" name="start-year" class="form-control" style="text-align: center; font-size: 16px;">
+                    </div>
+                    <div style="display: flex; align-items: center; color: var(--text-medium);">至</div>
+                    <div style="position: relative; flex: 1;">
+                      <div style="position: absolute; top: -10px; left: 15px; padding: 0 5px; background-color: white; font-size: 12px; color: var(--text-light);">结束年份</div>
+                      <input type="number" min="2000" max="2025" value="2025" name="end-year" class="form-control" style="text-align: center; font-size: 16px;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-col">
+                <div class="form-group">
+                  <label>专利申请人类型</label>
+                  <div style="margin-top: 15px;">
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                      <div style="flex: 1; min-width: 200px;">
+                        <label class="checkbox-container" style="position: relative; width: 100%; height: 80px; display: block; margin: 0; padding: 0; cursor: pointer;">
+                          <input type="checkbox" name="applicant-type" value="company" checked style="position: absolute; top: 15px; left: 15px; z-index: 2;">
+                          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-light); border-radius: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 2px solid var(--primary-light);">
+                            <i class="fas fa-building" style="font-size: 24px; color: var(--primary-color); margin-bottom: 8px;"></i>
+                            <div style="font-weight: 500; font-size: 14px; color: var(--text-dark);">企业</div>
+                          </div>
+                        </label>
+                      </div>
+                      <div style="flex: 1; min-width: 200px;">
+                        <label class="checkbox-container" style="position: relative; width: 100%; height: 80px; display: block; margin: 0; padding: 0; cursor: pointer;">
+                          <input type="checkbox" name="applicant-type" value="university" checked style="position: absolute; top: 15px; left: 15px; z-index: 2;">
+                          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-light); border-radius: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 2px solid var(--primary-light);">
+                            <i class="fas fa-university" style="font-size: 24px; color: var(--primary-color); margin-bottom: 8px;"></i>
+                            <div style="font-weight: 500; font-size: 14px; color: var(--text-dark);">高校</div>
+                          </div>
+                        </label>
+                      </div>
+                      <div style="flex: 1; min-width: 200px;">
+                        <label class="checkbox-container" style="position: relative; width: 100%; height: 80px; display: block; margin: 0; padding: 0; cursor: pointer;">
+                          <input type="checkbox" name="applicant-type" value="institute" checked style="position: absolute; top: 15px; left: 15px; z-index: 2;">
+                          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-light); border-radius: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 2px solid var(--primary-light);">
+                            <i class="fas fa-flask" style="font-size: 24px; color: var(--primary-color); margin-bottom: 8px;"></i>
+                            <div style="font-weight: 500; font-size: 14px; color: var(--text-dark);">研究机构</div>
+                          </div>
+                        </label>
+                      </div>
+                      <div style="flex: 1; min-width: 200px;">
+                        <label class="checkbox-container" style="position: relative; width: 100%; height: 80px; display: block; margin: 0; padding: 0; cursor: pointer;">
+                          <input type="checkbox" name="applicant-type" value="individual" style="position: absolute; top: 15px; left: 15px; z-index: 2;">
+                          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-light); border-radius: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <i class="fas fa-user" style="font-size: 24px; color: var(--text-medium); margin-bottom: 8px;"></i>
+                            <div style="font-weight: 500; font-size: 14px; color: var(--text-dark);">个人</div>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 高级设置 -->
+          <div class="form-section">
+            <div class="form-section-header">
+              <div class="form-section-icon">
+                <i class="fas fa-sliders-h"></i>
+              </div>
+              <h3 class="form-section-title">高级设置</h3>
+            </div>
+            
+            <div style="background-color: rgba(53, 132, 228, 0.05); border-radius: 12px; border: 1px dashed var(--primary-light); padding: 20px; margin-bottom: 20px;">
+              <div style="display: flex; align-items: flex-start; margin-bottom: 15px;">
+                <i class="fas fa-lightbulb" style="color: var(--warning-color); font-size: 20px; margin-right: 15px; margin-top: 2px;"></i>
+                <div>
+                  <h4 style="margin: 0 0 5px 0; color: var(--text-dark); font-size: 16px;">报告生成参数</h4>
+                  <p style="margin: 0; color: var(--text-medium); font-size: 14px; line-height: 1.5;">
+                    以下设置将影响最终报告的生成方式，请根据您的需求进行调整。选择合适的报告格式和语言可以提高报告的可用性。
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-col">
+                <div class="form-group">
+                  <label>报告格式</label>
+                  <div style="display: flex; gap: 15px; margin-top: 15px;">
+                    <label style="flex: 1; cursor: pointer;">
+                      <input type="radio" name="format" value="pdf" checked style="display: none;">
+                      <div style="border: 2px solid var(--primary-light); border-radius: 8px; padding: 15px; text-align: center; background-color: var(--bg-light);">
+                        <i class="fas fa-file-pdf" style="font-size: 30px; color: var(--primary-color); margin-bottom: 10px;"></i>
+                        <div style="font-weight: 500; color: var(--text-dark);">PDF格式</div>
+                        <div style="font-size: 12px; color: var(--text-medium); margin-top: 5px;">适合正式发布</div>
+                      </div>
+                    </label>
+                    <label style="flex: 1; cursor: pointer;">
+                      <input type="radio" name="format" value="word" style="display: none;">
+                      <div style="border: 2px solid var(--border-color); border-radius: 8px; padding: 15px; text-align: center; background-color: white;">
+                        <i class="fas fa-file-word" style="font-size: 30px; color: var(--text-light); margin-bottom: 10px;"></i>
+                        <div style="font-weight: 500; color: var(--text-dark);">Word格式</div>
+                        <div style="font-size: 12px; color: var(--text-medium); margin-top: 5px;">方便编辑修改</div>
+                      </div>
+                    </label>
+                    <label style="flex: 1; cursor: pointer;">
+                      <input type="radio" name="format" value="ppt" style="display: none;">
+                      <div style="border: 2px solid var(--border-color); border-radius: 8px; padding: 15px; text-align: center; background-color: white;">
+                        <i class="fas fa-file-powerpoint" style="font-size: 30px; color: var(--text-light); margin-bottom: 10px;"></i>
+                        <div style="font-weight: 500; color: var(--text-dark);">PPT格式</div>
+                        <div style="font-size: 12px; color: var(--text-medium); margin-top: 5px;">用于演示汇报</div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-col">
+                <div class="form-group">
+                  <label>报告长度</label>
+                  <div style="margin-top: 15px;">
+                    <div style="width: 100%; height: 6px; background-color: var(--bg-medium); border-radius: 3px; margin-bottom: 15px; position: relative;">
+                      <div style="position: absolute; top: -5px; left: 25%; width: 16px; height: 16px; border-radius: 50%; background-color: white; border: 2px solid var(--border-color);"></div>
+                      <div style="position: absolute; top: -5px; left: 50%; width: 16px; height: 16px; border-radius: 50%; background-color: var(--primary-color); border: 2px solid var(--primary-light); transform: translateX(-50%); box-shadow: 0 0 0 4px rgba(26, 95, 180, 0.15);"></div>
+                      <div style="position: absolute; top: -5px; left: 75%; width: 16px; height: 16px; border-radius: 50%; background-color: white; border: 2px solid var(--border-color);"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                      <div style="text-align: center; width: 33%; padding: 0 10px;">
+                        <label class="checkbox-container" style="margin: 0; cursor: pointer;">
+                          <input type="radio" name="length" value="short" style="display: none;">
+                          <div style="font-weight: 500; font-size: 14px; color: var(--text-medium);">简洁版</div>
+                          <div style="font-size: 12px; color: var(--text-light);">5-10页</div>
+                        </label>
+                      </div>
+                      <div style="text-align: center; width: 33%; padding: 0 10px;">
+                        <label class="checkbox-container" style="margin: 0; cursor: pointer;">
+                          <input type="radio" name="length" value="medium" checked style="display: none;">
+                          <div style="font-weight: 600; font-size: 14px; color: var(--primary-color);">标准版</div>
+                          <div style="font-size: 12px; color: var(--primary-light);">15-20页</div>
+                        </label>
+                      </div>
+                      <div style="text-align: center; width: 33%; padding: 0 10px;">
+                        <label class="checkbox-container" style="margin: 0; cursor: pointer;">
+                          <input type="radio" name="length" value="long" style="display: none;">
+                          <div style="font-weight: 500; font-size: 14px; color: var(--text-medium);">详细版</div>
+                          <div style="font-size: 12px; color: var(--text-light);">30-40页</div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-col">
+                <div class="form-group">
+                  <label>其他选项</label>
+                  <div style="display: flex; gap: 20px; margin-top: 15px;">
+                    <div style="flex: 1;">
+                      <div style="margin-bottom: 15px;">
+                        <label class="checkbox-container" style="display: flex; align-items: center; margin: 0;">
+                          <input type="checkbox" checked>
+                          <span style="margin-left: 10px; font-size: 14px; color: var(--text-dark);">包含专家点评</span>
+                        </label>
+                      </div>
+                      <div>
+                        <label class="checkbox-container" style="display: flex; align-items: center; margin: 0;">
+                          <input type="checkbox" checked>
+                          <span style="margin-left: 10px; font-size: 14px; color: var(--text-dark);">生成执行摘要</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div style="flex: 1;">
+                      <div style="margin-bottom: 15px;">
+                        <label class="checkbox-container" style="display: flex; align-items: center; margin: 0;">
+                          <input type="checkbox" checked>
+                          <span style="margin-left: 10px; font-size: 14px; color: var(--text-dark);">自动生成图表</span>
+                        </label>
+                      </div>
+                      <div>
+                        <label class="checkbox-container" style="display: flex; align-items: center; margin: 0;">
+                          <input type="checkbox">
+                          <span style="margin-left: 10px; font-size: 14px; color: var(--text-dark);">增加竞品对比分析</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 多模态搜索 -->
+          <section class="advanced-module" style="margin-bottom: 30px; background: white; border-radius: 12px; padding: 20px; box-shadow: var(--card-shadow);">
+            <div class="module-header" style="margin-bottom: 20px;">
+              <h3 style="font-size: 18px; color: var(--text-dark); font-weight: 600; margin: 0;">
+                <i class="fas fa-search" style="color: var(--accent-color); margin-right: 8px;"></i> 
+                <span style="position: relative; display: inline-block;">
+                  <span style="position: relative; z-index: 2; border-bottom: 3px solid var(--accent-color); background-color: rgba(255, 120, 0, 0.1); padding: 2px 8px; border-radius: 4px; font-weight: 700; color: var(--primary-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.1);">支持多模态搜索能力</span>
+                  <span style="position: absolute; bottom: -2px; left: 0; width: 100%; height: 8px; background-color: rgba(255, 120, 0, 0.1); z-index: 1; border-radius: 0 0 4px 4px;"></span>
+                </span>
+              </h3>
+              <p style="font-size: 14px; color: var(--text-medium); margin: 10px 0 0 0;">支持文本、图像、视频、3D模型等多种搜索方式，扩展数据检索范围</p>
+            </div>
+            
+            <div class="search-types-container">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
+                <!-- 文本搜索 -->
+                <div class="search-type-card" style="background-color: var(--bg-light); border-radius: 8px; padding: 15px; border-left: 4px solid var(--primary-color);">
+                  <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div style="width: 36px; height: 36px; border-radius: 8px; background-color: var(--primary-color); display: flex; justify-content: center; align-items: center; margin-right: 10px;">
+                      <i class="fas fa-font" style="color: white; font-size: 16px;"></i>
+                    </div>
+                    <h4 style="margin: 0; font-size: 15px; color: var(--text-dark);">文本搜索</h4>
+                  </div>
+                  <p style="margin: 0; font-size: 13px; color: var(--text-medium); line-height: 1.4;">通过关键词与自然语言描述精准找到相关研究资料</p>
+                </div>
+                
+                <!-- 图像匹配 -->
+                <div class="search-type-card" style="background-color: var(--bg-light); border-radius: 8px; padding: 15px; border-left: 4px solid var(--accent-color);">
+                  <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div style="width: 36px; height: 36px; border-radius: 8px; background-color: var(--accent-color); display: flex; justify-content: center; align-items: center; margin-right: 10px;">
+                      <i class="fas fa-image" style="color: white; font-size: 16px;"></i>
+                    </div>
+                    <h4 style="margin: 0; font-size: 15px; color: var(--text-dark);">图像匹配</h4>
+                  </div>
+                  <p style="margin: 0; font-size: 13px; color: var(--text-medium); line-height: 1.4;">上传图片查找相似或相关的研究图像与对应论文</p>
+                </div>
+                
+                <!-- 视频分析 -->
+                <div class="search-type-card" style="background-color: var(--bg-light); border-radius: 8px; padding: 15px; border-left: 4px solid #6a67ce;">
+                  <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div style="width: 36px; height: 36px; border-radius: 8px; background-color: #6a67ce; display: flex; justify-content: center; align-items: center; margin-right: 10px;">
+                      <i class="fas fa-video" style="color: white; font-size: 16px;"></i>
+                    </div>
+                    <h4 style="margin: 0; font-size: 15px; color: var(--text-dark);">视频分析</h4>
+                  </div>
+                  <p style="margin: 0; font-size: 13px; color: var(--text-medium); line-height: 1.4;">分析视频内容，提取关键信息并匹配相关研究成果</p>
+                </div>
+                
+                <!-- 3D模型对比 -->
+                <div class="search-type-card" style="background-color: var(--bg-light); border-radius: 8px; padding: 15px; border-left: 4px solid #20b2aa;">
+                  <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div style="width: 36px; height: 36px; border-radius: 8px; background-color: #20b2aa; display: flex; justify-content: center; align-items: center; margin-right: 10px;">
+                      <i class="fas fa-cube" style="color: white; font-size: 16px;"></i>
+                    </div>
+                    <h4 style="margin: 0; font-size: 15px; color: var(--text-dark);">3D模型对比</h4>
+                  </div>
+                  <p style="margin: 0; font-size: 13px; color: var(--text-medium); line-height: 1.4;">支持上传3D模型进行结构相似性检索和比对</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- 智能文档生成 -->
+          <section class="advanced-module" style="margin-bottom: 30px; background: white; border-radius: 12px; padding: 20px; box-shadow: var(--card-shadow);">
+            <div class="module-header" style="margin-bottom: 20px;">
+              <h3 style="font-size: 18px; color: var(--text-dark); font-weight: 600; margin: 0;">
+                <i class="fas fa-file-alt" style="color: var(--accent-color); margin-right: 8px;"></i> 
+                <span style="position: relative; display: inline-block;">
+                  <span style="position: relative; z-index: 2; border-bottom: 3px solid var(--accent-color); background-color: rgba(255, 120, 0, 0.1); padding: 2px 8px; border-radius: 4px; font-weight: 700; color: var(--primary-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.1);">智能文档生成能力</span>
+                  <span style="position: absolute; bottom: -2px; left: 0; width: 100%; height: 8px; background-color: rgba(255, 120, 0, 0.1); z-index: 1; border-radius: 0 0 4px 4px;"></span>
+                </span>
+              </h3>
+              <p style="font-size: 14px; color: var(--text-medium); margin: 10px 0 0 0;">基于研究主题自动输出申请书、专利、合作方案等草稿，提高创作效率</p>
+            </div>
+            
+            <div class="documents-preview" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+              <!-- 专利草稿 -->
+              <div class="document-card" style="border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden;">
+                <div style="height: 120px; background-color: var(--bg-light); position: relative; display: flex; justify-content: center; align-items: center;">
+                  <img src="../img/documents/patent-doc.svg" onerror="this.src='https://placehold.co/320x160/e9ecef/1a5fb4?text=专利文档预览'" alt="专利文档预览" style="max-width: 90%; max-height: 90px; object-fit: contain;">
+                  <div style="position: absolute; top: 10px; right: 10px; background-color: var(--primary-color); color: white; font-size: 11px; padding: 3px 8px; border-radius: 12px;">专利</div>
+                </div>
+                <div style="padding: 15px;">
+                  <h4 style="margin: 0 0 8px 0; font-size: 15px; color: var(--text-dark);">专利申请草稿</h4>
+                  <p style="margin: 0; font-size: 13px; color: var(--text-medium); line-height: 1.4;">自动生成权利要求、技术背景、实施方式等专利必备章节</p>
+                </div>
+              </div>
+              
+              <!-- 申请表格 -->
+              <div class="document-card" style="border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden;">
+                <div style="height: 120px; background-color: var(--bg-light); position: relative; display: flex; justify-content: center; align-items: center;">
+                  <img src="../img/documents/application-form.svg" onerror="this.src='https://placehold.co/320x160/e9ecef/1a5fb4?text=申请表格预览'" alt="申请表格预览" style="max-width: 90%; max-height: 90px; object-fit: contain;">
+                  <div style="position: absolute; top: 10px; right: 10px; background-color: var(--accent-color); color: white; font-size: 11px; padding: 3px 8px; border-radius: 12px;">申请</div>
+                </div>
+                <div style="padding: 15px;">
+                  <h4 style="margin: 0 0 8px 0; font-size: 15px; color: var(--text-dark);">项目申请书</h4>
+                  <p style="margin: 0; font-size: 13px; color: var(--text-medium); line-height: 1.4;">包含研究价值、技术路线、预期成果等标准申请书内容</p>
+                </div>
+              </div>
+              
+              <!-- 合作方案 -->
+              <div class="document-card" style="border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden;">
+                <div style="height: 120px; background-color: var(--bg-light); position: relative; display: flex; justify-content: center; align-items: center;">
+                  <img src="../img/documents/cooperation-plan.svg" onerror="this.src='https://placehold.co/320x160/e9ecef/1a5fb4?text=合作方案预览'" alt="合作方案预览" style="max-width: 90%; max-height: 90px; object-fit: contain;">
+                  <div style="position: absolute; top: 10px; right: 10px; background-color: #6a67ce; color: white; font-size: 11px; padding: 3px 8px; border-radius: 12px;">合作</div>
+                </div>
+                <div style="padding: 15px;">
+                  <h4 style="margin: 0 0 8px 0; font-size: 15px; color: var(--text-dark);">合作方案草稿</h4>
+                  <p style="margin: 0; font-size: 13px; color: var(--text-medium); line-height: 1.4;">自动生成技术合作框架、分工计划和预期价值等内容</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- 按钮区域 -->
+          <div class="btn-section">
+            <a href="dashboard.html" class="btn btn-secondary">
+              <i class="fas fa-arrow-left"></i>
+              返回仪表盘
+            </a>
+            <a href="logistics-confirm.html" class="btn btn-primary" id="submit-btn">
+              下一步
+              <i class="fas fa-arrow-right" style="margin: 0 0 0 8px;"></i>
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // 关键词输入处理
+    document.addEventListener('DOMContentLoaded', function() {
+      // 格式选择处理
+      const formatRadios = document.querySelectorAll('input[name="format"]');
+      formatRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          // 重置所有标签样式
+          document.querySelectorAll('input[name="format"]').forEach(r => {
+            const parent = r.parentElement.querySelector('div');
+            if (r.checked) {
+              parent.style.borderColor = 'var(--primary-light)';
+              parent.style.backgroundColor = 'var(--bg-light)';
+              parent.querySelector('i').style.color = 'var(--primary-color)';
+            } else {
+              parent.style.borderColor = 'var(--border-color)';
+              parent.style.backgroundColor = 'white';
+              parent.querySelector('i').style.color = 'var(--text-light)';
+            }
+          });
+        });
+      });
+
+      // 报告长度选择处理
+      const lengthRadios = document.querySelectorAll('input[name="length"]');
+      lengthRadios.forEach((radio, index) => {
+        radio.addEventListener('change', function() {
+          // 重置所有标签样式
+          document.querySelectorAll('input[name="length"]').forEach((r, i) => {
+            const textEl = r.parentElement.querySelector('div:first-of-type');
+            const subTextEl = r.parentElement.querySelector('div:last-of-type');
+            
+            if (r.checked) {
+              textEl.style.fontWeight = '600';
+              textEl.style.color = 'var(--primary-color)';
+              subTextEl.style.color = 'var(--primary-light)';
+              
+              // 更新进度条指示器
+              const indicators = document.querySelectorAll('.form-group div[style*="height: 6px"] div');
+              indicators.forEach((ind, indIndex) => {
+                if (indIndex === i) {
+                  ind.style.backgroundColor = 'var(--primary-color)';
+                  ind.style.borderColor = 'var(--primary-light)';
+                  ind.style.boxShadow = '0 0 0 4px rgba(26, 95, 180, 0.15)';
+                } else {
+                  ind.style.backgroundColor = 'white';
+                  ind.style.borderColor = 'var(--border-color)';
+                  ind.style.boxShadow = 'none';
+                }
+              });
+            } else {
+              textEl.style.fontWeight = '500';
+              textEl.style.color = 'var(--text-medium)';
+              subTextEl.style.color = 'var(--text-light)';
+            }
+          });
+        });
+      });
+      
+      // 移除关键词
+      document.querySelectorAll('.tag i').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          // 移除关键词标签
+          this.parentElement.remove();
+          
+          // 检查当前关键词数量
+          checkKeywordsCount();
+        });
+      });
+      
+      // 关键词输入处理
+      const keywordsInput = document.getElementById('keywords');
+      keywordsInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && this.value.trim() !== '') {
+          e.preventDefault();
+          addKeyword(this.value.trim());
+          this.value = '';
+        }
+      });
+      
+      // 添加关键词按钮点击处理
+      document.getElementById('add-keyword-btn').addEventListener('click', function() {
+        const input = document.getElementById('keywords');
+        if (input.value.trim() !== '') {
+          addKeyword(input.value.trim());
+          input.value = '';
+        }
+      });
+      
+      // 初始检查关键词数量
+      checkKeywordsCount();
+      
+      // 下一步按钮
+      document.getElementById('submit-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // 添加保存动画效果
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 保存中...';
+        this.style.pointerEvents = 'none';
+        
+        // 模拟保存延迟后跳转
+        setTimeout(() => {
+          window.location.href = 'logistics-confirm.html';
+        }, 800);
+      });
+    });
+    
+    function addKeyword(keyword) {
+      // 获取关键词容器
+      const container = document.getElementById('keyword-tags');
+      const count = container.querySelectorAll('.tag').length;
+      
+      // 检查是否已达到最大数量限制
+      if (count >= 5) {
+        return;
+      }
+      
+      // 创建新的关键词标签
+      const tag = document.createElement('span');
+      tag.className = 'tag';
+      tag.innerHTML = keyword + '<i class="fas fa-times"></i>';
+      
+      // 添加移除事件
+      tag.querySelector('i').addEventListener('click', function() {
+        tag.remove();
+        checkKeywordsCount();
+      });
+      
+      // 添加到容器
+      container.appendChild(tag);
+      
+      // 检查添加后的数量
+      checkKeywordsCount();
+    }
+    
+    function checkKeywordsCount() {
+      const container = document.getElementById('keyword-tags');
+      const count = container.querySelectorAll('.tag').length;
+      const input = document.getElementById('keywords');
+      const addBtn = document.getElementById('add-keyword-btn');
+      const hint = document.getElementById('keyword-hint');
+      
+      if (count >= 5) {
+        input.disabled = true;
+        addBtn.disabled = true;
+        hint.textContent = '已添加5个关键词（最大限制）';
+      } else {
+        input.disabled = false;
+        addBtn.disabled = false;
+        hint.textContent = `已添加${count}个关键词（还可添加${5-count}个）`;
+      }
+    }
+  </script>
+</body>
+</html> 

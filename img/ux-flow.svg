@@ -1,0 +1,67 @@
+<svg width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="300" fill="#f8f9fa" rx="8" ry="8" />
+  
+  <!-- 连接线 -->
+  <line x1="100" y1="150" x2="200" y2="150" stroke="#1a5fb4" stroke-width="2" />
+  <line x1="300" y1="150" x2="400" y2="150" stroke="#1a5fb4" stroke-width="2" />
+  <line x1="500" y1="150" x2="600" y2="150" stroke="#1a5fb4" stroke-width="2" />
+  <line x1="700" y1="150" x2="750" y2="150" stroke="#1a5fb4" stroke-width="2" stroke-dasharray="5,5" />
+  
+  <!-- 箭头 -->
+  <polygon points="195,145 205,150 195,155" fill="#1a5fb4" />
+  <polygon points="395,145 405,150 395,155" fill="#1a5fb4" />
+  <polygon points="595,145 605,150 595,155" fill="#1a5fb4" />
+  <polygon points="745,145 755,150 745,155" fill="#1a5fb4" />
+  
+  <!-- 节点 -->
+  <g transform="translate(50, 150)">
+    <circle cx="0" cy="0" r="40" fill="#ffffff" stroke="#1a5fb4" stroke-width="2" />
+    <text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="12" fill="#1a5fb4">首页/登录</text>
+    <text x="0" y="18" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="10" fill="#666666">开始旅程</text>
+  </g>
+  
+  <g transform="translate(250, 150)">
+    <circle cx="0" cy="0" r="40" fill="#ffffff" stroke="#1a5fb4" stroke-width="2" />
+    <text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="12" fill="#1a5fb4">仪表盘</text>
+    <text x="0" y="18" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="10" fill="#666666">系统概览</text>
+  </g>
+  
+  <g transform="translate(450, 150)">
+    <circle cx="0" cy="0" r="40" fill="#ffffff" stroke="#1a5fb4" stroke-width="2" />
+    <text x="0" y="-5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="12" fill="#1a5fb4">任务创建</text>
+    <text x="0" y="13" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="10" fill="#666666">配置参数</text>
+  </g>
+  
+  <g transform="translate(650, 150)">
+    <circle cx="0" cy="0" r="40" fill="#ffffff" stroke="#1a5fb4" stroke-width="2" />
+    <text x="0" y="-5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="12" fill="#1a5fb4">生成进度</text>
+    <text x="0" y="13" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="10" fill="#666666">实时反馈</text>
+  </g>
+  
+  <!-- 反馈循环 -->
+  <path d="M 650,100 C 650,70 450,70 450,100" fill="none" stroke="#ff7800" stroke-width="2" stroke-dasharray="4,2" />
+  <polygon points="445,95 450,105 455,95" fill="#ff7800" />
+  <text x="550" y="60" text-anchor="middle" font-family="Arial" font-size="10" fill="#ff7800">修改参数/重新生成</text>
+  
+  <!-- 最终节点 -->
+  <g transform="translate(775, 150)">
+    <rect x="-25" y="-25" width="50" height="50" rx="10" ry="10" fill="#1a5fb4" />
+    <text x="0" y="-5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="12" fill="#ffffff">报告</text>
+    <text x="0" y="13" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="10" fill="#ffffff">应用</text>
+  </g>
+  
+  <!-- 标题 -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="18" fill="#333333">聚研AI系统用户体验流程</text>
+  <text x="400" y="50" text-anchor="middle" font-family="Arial" font-size="12" fill="#666666">从首页登录到报告应用的完整旅程</text>
+  
+  <!-- 图例 -->
+  <rect x="40" y="230" width="15" height="2" fill="#1a5fb4" />
+  <text x="65" y="235" font-family="Arial" font-size="10" fill="#666666">主要流程</text>
+  
+  <rect x="140" y="230" width="15" height="2" fill="#ff7800" stroke-dasharray="4,2" />
+  <text x="165" y="235" font-family="Arial" font-size="10" fill="#666666">反馈循环</text>
+  
+  <rect x="240" y="230" width="15" height="2" fill="#1a5fb4" stroke-dasharray="5,5" />
+  <text x="265" y="235" font-family="Arial" font-size="10" fill="#666666">扩展流程</text>
+</svg> 

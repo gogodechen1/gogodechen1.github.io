@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>输入参数 - 聚研AI</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="../index.html" class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+        聚研AI
+      </a>
+      
+      <div style="display: flex; align-items: center;">
+        <div style="margin-right: 20px;">
+          <span style="font-weight: 500;">创建分析任务</span>
+        </div>
+        
+        <div style="display: flex; align-items: center;">
+          <span style="color: #666; margin-right: 10px;">Demo教师（demo_teacher）</span>
+          <div style="width: 36px; height: 36px; border-radius: 50%; background-color: #e9eff8; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-user" style="color: #1a5fb4;"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="params-page">
+    <div class="container">
+      <!-- 步骤导航 -->
+      <div class="step-nav">
+        <div class="step-item active">
+          <div class="step-number">1</div>
+          <div class="step-name">输入参数</div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-name">确认</div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-name">生成</div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <div class="step-name">完成</div>
+        </div>
+      </div>
+
+      <!-- 参数表单 -->
+      <div class="params-form-container">
+        <h2 class="section-title">设置分析参数</h2>
+        <p class="section-desc">请设定您的研究参数，帮助AI更精准地分析和生成报告</p>
+        
+        <form class="params-form">
+          <!-- 基本信息 -->
+          <div class="form-section">
+            <h3 class="form-title">基本信息</h3>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="task-name">任务名称</label>
+                <input type="text" id="task-name" name="task-name" placeholder="请输入任务名称" value="机电一体化技术发展趋势分析" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="task-type">任务类型</label>
+                <select id="task-type" name="task-type" required>
+                  <option value="">请选择任务类型</option>
+                  <option value="project" selected>课题申报</option>
+                  <option value="patent">专利申请</option>
+                  <option value="teaching">教学案例</option>
+                  <option value="enterprise">企业分析</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="discipline">学科领域</label>
+                <input type="text" id="discipline" name="discipline" placeholder="请输入学科领域" value="机械工程、自动化" required>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 研究参数 -->
+          <div class="form-section">
+            <h3 class="form-title">研究参数</h3>
+            
+            <div class="form-row">
+              <div class="form-group full-width">
+                <label for="research-topic">研究主题</label>
+                <input type="text" id="research-topic" name="research-topic" placeholder="输入研究的具体主题" value="机电一体化技术在智能制造中的应用研究" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group full-width">
+                <label for="keywords">关键词（最多5个）</label>
+                <div class="keywords-container">
+                  <div class="keyword-tags">
+                    <span class="keyword-tag">
+                      机电一体化
+                      <i class="fas fa-times"></i>
+                    </span>
+                    <span class="keyword-tag">
+                      智能制造
+                      <i class="fas fa-times"></i>
+                    </span>
+                    <span class="keyword-tag">
+                      工业4.0
+                      <i class="fas fa-times"></i>
+                    </span>
+                    <span class="keyword-tag">
+                      人机协作
+                      <i class="fas fa-times"></i>
+                    </span>
+                    <span class="keyword-tag">
+                      数字孪生
+                      <i class="fas fa-times"></i>
+                    </span>
+                  </div>
+                  <input type="text" id="keywords" name="keywords" placeholder="输入关键词并按回车添加" disabled>
+                </div>
+                <small class="form-hint">已添加5个关键词（最大限制）</small>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group full-width">
+                <label>分析维度</label>
+                <div class="checkbox-group">
+                  <label class="checkbox-container">
+                    <input type="checkbox" name="dimensions" value="trends" checked>
+                    <span class="checkbox-text">技术趋势</span>
+                  </label>
+                  <label class="checkbox-container">
+                    <input type="checkbox" name="dimensions" value="competition" checked>
+                    <span class="checkbox-text">竞争格局</span>
+                  </label>
+                  <label class="checkbox-container">
+                    <input type="checkbox" name="dimensions" value="applications" checked>
+                    <span class="checkbox-text">应用场景</span>
+                  </label>
+                  <label class="checkbox-container">
+                    <input type="checkbox" name="dimensions" value="policy">
+                    <span class="checkbox-text">政策环境</span>
+                  </label>
+                  <label class="checkbox-container">
+                    <input type="checkbox" name="dimensions" value="future">
+                    <span class="checkbox-text">未来展望</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 数据源配置 -->
+          <div class="form-section">
+            <h3 class="form-title">数据源配置</h3>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label>文献范围</label>
+                <div class="checkbox-group">
+                  <label class="checkbox-container">
+                    <input type="checkbox" name="lit-source" value="journal" checked>
+                    <span class="checkbox-text">期刊论文</span>
+                  </label>
+                  <label class="checkbox-container">
+                    <input type="checkbox" name="lit-source" value="conference" checked>
+                    <span class="checkbox-text">会议论文</span>
+                  </label>
+                  <label class="checkbox-container">
+                    <input type="checkbox" name="lit-source" value="thesis">
+                    <span class="checkbox-text">学位论文</span>
+                  </label>
+                  <label class="checkbox-container">
+                    <input type="checkbox" name="lit-source" value="report">
+                    <span class="checkbox-text">行业报告</span>
+                  </label>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label>专利范围</label>
+                <div class="checkbox-group">
+                  <label class="checkbox-container">
+                    <input type="checkbox" name="patent-source" value="china" checked>
+                    <span class="checkbox-text">中国专利</span>
+                  </label>
+                  <label class="checkbox-container">
+                    <input type="checkbox" name="patent-source" value="international" checked>
+                    <span class="checkbox-text">国际专利</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label>时间范围</label>
+                <div class="date-range">
+                  <select id="start-year" name="start-year">
+                    <option value="2023">2023年</option>
+                    <option value="2022">2022年</option>
+                    <option value="2021">2021年</option>
+                    <option value="2020">2020年</option>
+                    <option value="2019">2019年</option>
+                    <option value="2018" selected>2018年</option>
+                    <option value="2017">2017年</option>
+                    <option value="2016">2016年</option>
+                    <option value="2015">2015年</option>
+                    <option value="2014">2014年</option>
+                    <option value="2013">2013年</option>
+                  </select>
+                  <span class="date-separator">至</span>
+                  <select id="end-year" name="end-year">
+                    <option value="2023" selected>2023年</option>
+                    <option value="2022">2022年</option>
+                    <option value="2021">2021年</option>
+                    <option value="2020">2020年</option>
+                    <option value="2019">2019年</option>
+                    <option value="2018">2018年</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group full-width">
+                <label>上传参考文献（可选）</label>
+                <div class="file-upload">
+                  <input type="file" id="file-upload" name="file-upload">
+                  <label for="file-upload" class="file-upload-btn">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    选择文件
+                  </label>
+                  <span class="file-name">report-sample.pdf</span>
+                </div>
+                <small class="form-hint">支持PDF、Word、Excel格式，单文件不超过10MB</small>
+              </div>
+            </div>
+          </div>
+          
+          <!-- AI辅助 -->
+          <div class="ai-assist">
+            <button type="button" class="ai-assist-btn">
+              <i class="fas fa-robot"></i>
+              AI辅助填写参数
+            </button>
+            <span class="ai-assist-info">帮助您自动完善参数，提高分析精度</span>
+          </div>
+          
+          <!-- 表单操作 -->
+          <div class="form-actions">
+            <button type="button" class="btn-secondary">取消</button>
+            <button type="submit" class="btn-primary">下一步</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>资源库 - 聚研AI</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="../index.html" class="logo">
+        <img src="https://placehold.co/200x60?text=聚研AI" alt="聚研AI Logo">
+      </a>
+      <div class="user-info">
+        <span>张明（demo_teacher）</span>
+        <img src="https://placehold.co/40x40" alt="用户头像" class="user-avatar">
+      </div>
+    </div>
+  </nav>
+
+  <!-- 仪表盘容器 -->
+  <div class="dashboard-container">
+    <!-- 侧边栏 -->
+    <div class="sidebar">
+      <ul class="sidebar-menu">
+        <li><a href="dashboard.html"><i class="fas fa-chart-pie"></i> 仪表盘</a></li>
+        <li><a href="tasks.html"><i class="fas fa-tasks"></i> 任务管理</a></li>
+        <li><a href="resources.html" class="active"><i class="fas fa-folder"></i> 资源库</a></li>
+        <li><a href="settings.html"><i class="fas fa-cog"></i> 设置</a></li>
+      </ul>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="main-content">
+      <div class="resources-header">
+        <h2>资源库</h2>
+        <div class="resource-actions">
+          <button class="upload-btn">
+            <i class="fas fa-upload"></i> 上传文件
+          </button>
+          <button class="new-folder-btn">
+            <i class="fas fa-folder-plus"></i> 新建文件夹
+          </button>
+        </div>
+      </div>
+
+      <div class="task-search" style="margin-bottom: 20px;">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="搜索文件名或内容...">
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <div class="breadcrumb">
+          <a href="#">我的资源</a>
+          <span class="separator">/</span>
+          <a href="#">研究资料</a>
+          <span class="separator">/</span>
+          <span class="current">2023年项目</span>
+        </div>
+        <div class="view-options">
+          <span class="view-label">视图：</span>
+          <select class="view-select">
+            <option value="grid">网格视图</option>
+            <option value="list">列表视图</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="file-grid">
+        <!-- 文件夹 -->
+        <div class="file-item">
+          <div class="file-menu">
+            <button class="file-action-btn">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </div>
+          <div class="file-icon folder">
+            <i class="fas fa-folder"></i>
+          </div>
+          <div class="file-name">课题申报材料</div>
+          <div class="file-meta">10个文件 - 2023-12-01</div>
+        </div>
+
+        <div class="file-item">
+          <div class="file-menu">
+            <button class="file-action-btn">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </div>
+          <div class="file-icon folder">
+            <i class="fas fa-folder"></i>
+          </div>
+          <div class="file-name">教学案例</div>
+          <div class="file-meta">5个文件 - 2023-11-25</div>
+        </div>
+
+        <div class="file-item">
+          <div class="file-menu">
+            <button class="file-action-btn">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </div>
+          <div class="file-icon folder">
+            <i class="fas fa-folder"></i>
+          </div>
+          <div class="file-name">专利资料</div>
+          <div class="file-meta">8个文件 - 2023-11-15</div>
+        </div>
+
+        <!-- PDF文件 -->
+        <div class="file-item">
+          <div class="file-menu">
+            <button class="file-action-btn">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </div>
+          <div class="file-icon pdf">
+            <i class="fas fa-file-pdf"></i>
+          </div>
+          <div class="file-name">机电一体化技术发展趋势分析.pdf</div>
+          <div class="file-meta">2.5 MB - 2023-12-10</div>
+        </div>
+
+        <div class="file-item">
+          <div class="file-menu">
+            <button class="file-action-btn">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </div>
+          <div class="file-icon pdf">
+            <i class="fas fa-file-pdf"></i>
+          </div>
+          <div class="file-name">化学反应动力学教学案例设计.pdf</div>
+          <div class="file-meta">1.8 MB - 2023-12-05</div>
+        </div>
+
+        <!-- Word文档 -->
+        <div class="file-item">
+          <div class="file-menu">
+            <button class="file-action-btn">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </div>
+          <div class="file-icon doc">
+            <i class="fas fa-file-word"></i>
+          </div>
+          <div class="file-name">智能传感器专利检索报告.docx</div>
+          <div class="file-meta">3.2 MB - 2023-11-28</div>
+        </div>
+
+        <div class="file-item">
+          <div class="file-menu">
+            <button class="file-action-btn">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </div>
+          <div class="file-icon doc">
+            <i class="fas fa-file-word"></i>
+          </div>
+          <div class="file-name">研究项目申请书.docx</div>
+          <div class="file-meta">1.5 MB - 2023-11-20</div>
+        </div>
+
+        <!-- 图片 -->
+        <div class="file-item">
+          <div class="file-menu">
+            <button class="file-action-btn">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </div>
+          <div class="file-icon image">
+            <i class="fas fa-file-image"></i>
+          </div>
+          <div class="file-name">技术流程图.png</div>
+          <div class="file-meta">0.8 MB - 2023-11-10</div>
+        </div>
+
+        <!-- PPT文件 -->
+        <div class="file-item">
+          <div class="file-menu">
+            <button class="file-action-btn">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </div>
+          <div class="file-icon">
+            <i class="fas fa-file-powerpoint" style="color: #D24726;"></i>
+          </div>
+          <div class="file-name">教学演示PPT.pptx</div>
+          <div class="file-meta">5.2 MB - 2023-11-05</div>
+        </div>
+
+        <!-- Excel文件 -->
+        <div class="file-item">
+          <div class="file-menu">
+            <button class="file-action-btn">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </div>
+          <div class="file-icon">
+            <i class="fas fa-file-excel" style="color: #217346;"></i>
+          </div>
+          <div class="file-name">研究数据分析.xlsx</div>
+          <div class="file-meta">1.7 MB - 2023-10-28</div>
+        </div>
+
+        <!-- 文本文件 -->
+        <div class="file-item">
+          <div class="file-menu">
+            <button class="file-action-btn">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </div>
+          <div class="file-icon">
+            <i class="fas fa-file-alt" style="color: #888;"></i>
+          </div>
+          <div class="file-name">研究笔记.txt</div>
+          <div class="file-meta">0.1 MB - 2023-10-20</div>
+        </div>
+
+        <!-- 压缩文件 -->
+        <div class="file-item">
+          <div class="file-menu">
+            <button class="file-action-btn">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </div>
+          <div class="file-icon">
+            <i class="fas fa-file-archive" style="color: #A63800;"></i>
+          </div>
+          <div class="file-name">实验数据.zip</div>
+          <div class="file-meta">12.5 MB - 2023-10-15</div>
+        </div>
+      </div>
+
+      <div class="pagination" style="margin-top: 30px;">
+        <div class="pagination-info">
+          显示 1-12 项，共 24 项
+        </div>
+        <div class="pagination-buttons">
+          <button class="page-btn disabled">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="storage-usage">
+        <h3>存储空间使用情况</h3>
+        <div class="storage-bar">
+          <div class="storage-bar-fill"></div>
+        </div>
+        <div class="storage-details">
+          <span>已使用: 6.5 GB</span>
+          <span>总容量: 10 GB</span>
+          <a href="#" style="color: var(--primary-color);">升级存储空间</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+</html> 

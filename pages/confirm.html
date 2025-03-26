@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>确认参数 - 聚研AI</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="../index.html" class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+        聚研AI
+      </a>
+      
+      <div style="display: flex; align-items: center;">
+        <span style="color: #666; margin-right: 10px;">Demo教师（demo_teacher）</span>
+        <div style="width: 36px; height: 36px; border-radius: 50%; background-color: #e9eff8; display: flex; align-items: center; justify-content: center;">
+          <i class="fas fa-user" style="color: #1a5fb4;"></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="params-page">
+    <div class="container">
+      <!-- 步骤导航 -->
+      <div class="step-nav">
+        <div class="step-item completed">
+          <div class="step-number">
+            <i class="fas fa-check"></i>
+          </div>
+          <div class="step-name">输入参数</div>
+        </div>
+        <div class="step-item active">
+          <div class="step-number">2</div>
+          <div class="step-name">确认</div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-name">生成</div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <div class="step-name">完成</div>
+        </div>
+      </div>
+
+      <!-- 确认表单 -->
+      <div class="confirm-form-container">
+        <h2 class="section-title">确认分析任务</h2>
+        <p class="section-desc">请确认以下参数设置，点击开始分析将使用学习积分并开始生成报告</p>
+        
+        <form class="confirm-form">
+          <!-- 任务概览 -->
+          <div class="confirm-section">
+            <h3 class="confirm-title">任务概览</h3>
+            <div class="confirm-content">
+              <div class="confirm-item">
+                <span class="confirm-label">任务名称：</span>
+                <span class="confirm-value">机电一体化技术发展趋势分析</span>
+              </div>
+              <div class="confirm-item">
+                <span class="confirm-label">任务类型：</span>
+                <span class="confirm-value">课题申报</span>
+              </div>
+              <div class="confirm-item">
+                <span class="confirm-label">学科领域：</span>
+                <span class="confirm-value">机械工程、自动化</span>
+              </div>
+              <div class="confirm-item">
+                <span class="confirm-label">任务编号：</span>
+                <span class="confirm-value">TASK20240612001</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 研究参数 -->
+          <div class="confirm-section">
+            <h3 class="confirm-title">研究参数</h3>
+            <div class="confirm-content">
+              <div class="confirm-item">
+                <span class="confirm-label">研究主题：</span>
+                <span class="confirm-value">机电一体化技术在智能制造中的应用研究</span>
+              </div>
+              <div class="confirm-item">
+                <span class="confirm-label">关键词：</span>
+                <div class="tags-container">
+                  <span class="tag">机电一体化</span>
+                  <span class="tag">智能制造</span>
+                  <span class="tag">工业4.0</span>
+                  <span class="tag">人机协作</span>
+                  <span class="tag">数字孪生</span>
+                </div>
+              </div>
+              <div class="confirm-item">
+                <span class="confirm-label">分析维度：</span>
+                <div class="tags-container">
+                  <span class="tag">技术趋势</span>
+                  <span class="tag">竞争格局</span>
+                  <span class="tag">应用场景</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 数据源配置 -->
+          <div class="confirm-section">
+            <h3 class="confirm-title">数据源配置</h3>
+            <div class="confirm-content">
+              <div class="confirm-item">
+                <span class="confirm-label">文献范围：</span>
+                <span class="confirm-value">期刊论文, 会议论文</span>
+              </div>
+              <div class="confirm-item">
+                <span class="confirm-label">专利范围：</span>
+                <span class="confirm-value">中国专利, 国际专利</span>
+              </div>
+              <div class="confirm-item">
+                <span class="confirm-label">时间范围：</span>
+                <span class="confirm-value">2018年至2023年</span>
+              </div>
+              <div class="confirm-item">
+                <span class="confirm-label">上传文件：</span>
+                <div class="uploaded-file">
+                  <i class="fas fa-file-pdf"></i>
+                  <span>report-sample.pdf</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 输出设置 -->
+          <div class="confirm-section">
+            <h3 class="confirm-title">输出设置</h3>
+            <div class="confirm-content">
+              <div class="confirm-item">
+                <span class="confirm-label">报告格式：</span>
+                <div class="format-options">
+                  <label class="format-option active">
+                    <input type="radio" name="format" value="pdf" checked>
+                    <i class="fas fa-file-pdf"></i>
+                    <span>PDF</span>
+                  </label>
+                  <label class="format-option">
+                    <input type="radio" name="format" value="word">
+                    <i class="fas fa-file-word"></i>
+                    <span>Word</span>
+                  </label>
+                  <label class="format-option">
+                    <input type="radio" name="format" value="ppt">
+                    <i class="fas fa-file-powerpoint"></i>
+                    <span>PPT</span>
+                  </label>
+                </div>
+              </div>
+              <div class="confirm-item">
+                <span class="confirm-label">报告语言：</span>
+                <div class="language-options">
+                  <label class="language-option active">
+                    <input type="radio" name="language" value="chinese" checked>
+                    <span>中文</span>
+                  </label>
+                  <label class="language-option">
+                    <input type="radio" name="language" value="english">
+                    <span>英文</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 费用与时间 -->
+          <div class="confirm-section">
+            <h3 class="confirm-title">费用与时间</h3>
+            <div class="confirm-content">
+              <div class="confirm-item">
+                <span class="confirm-label">预计完成时间：</span>
+                <span class="confirm-value highlight">5-10分钟</span>
+              </div>
+              <div class="confirm-item">
+                <span class="confirm-label">消耗学习积分：</span>
+                <span class="confirm-value highlight">20积分</span>
+                <span class="balance">（当前余额：180积分）</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 表单操作 -->
+          <div class="form-actions">
+            <a href="params.html" class="btn-secondary">返回修改</a>
+            <button type="submit" class="btn-primary">开始分析</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>科研教学融合 - 聚研AI</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #1a5fb4;
+      --primary-light: #3584e4;
+      --primary-dark: #15417e;
+      --accent-color: #ff7800;
+      --text-dark: #333333;
+      --text-medium: #666666;
+      --text-light: #999999;
+      --bg-light: #f8f9fa;
+      --bg-medium: #e9ecef;
+      --border-color: #dee2e6;
+      --success-color: #28a745;
+      --warning-color: #ffc107;
+      --danger-color: #dc3545;
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .page-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+    
+    .page-header {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    
+    .page-title {
+      font-size: 32px;
+      color: var(--text-dark);
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .page-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+      border-radius: 2px;
+    }
+    
+    .page-subtitle {
+      font-size: 18px;
+      color: var(--text-medium);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    
+    .feature-section {
+      margin-bottom: 60px;
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+    }
+    
+    .feature-header {
+      background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+      color: white;
+      padding: 30px;
+      position: relative;
+    }
+    
+    .feature-header h2 {
+      font-size: 24px;
+      margin: 0 0 10px 0;
+      display: flex;
+      align-items: center;
+    }
+    
+    .feature-header h2 i {
+      margin-right: 15px;
+      font-size: 28px;
+    }
+    
+    .feature-header p {
+      margin: 0;
+      font-size: 16px;
+      opacity: 0.9;
+      max-width: 800px;
+    }
+    
+    .feature-body {
+      padding: 30px;
+    }
+    
+    .highlight-box {
+      background-color: rgba(26, 95, 180, 0.05);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    .highlight-title {
+      font-size: 20px;
+      color: var(--primary-color);
+      margin: 0 0 15px 0;
+      display: flex;
+      align-items: center;
+    }
+    
+    .highlight-title i {
+      margin-right: 10px;
+    }
+    
+    .highlight-text {
+      color: var(--text-medium);
+      margin: 0;
+      line-height: 1.6;
+    }
+    
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .feature-card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 25px;
+      transition: all 0.3s ease;
+      border-top: 4px solid var(--primary-light);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-card-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    
+    .feature-card h3 {
+      font-size: 18px;
+      color: var(--text-dark);
+      margin: 0 0 10px 0;
+    }
+    
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-medium);
+      margin: 0;
+      line-height: 1.5;
+    }
+    
+    .image-showcase {
+      margin-top: 30px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .image-showcase img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .cta-section {
+      text-align: center;
+      margin-top: 60px;
+      padding: 40px;
+      background-color: var(--bg-light);
+      border-radius: 12px;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 14px 30px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      margin-top: 20px;
+    }
+    
+    .cta-button:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .tag {
+      display: inline-block;
+      padding: 6px 12px;
+      background-color: rgba(26, 95, 180, 0.1);
+      color: var(--primary-color);
+      border-radius: 20px;
+      font-size: 13px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .tech-comparison {
+      margin-top: 30px;
+      overflow-x: auto;
+    }
+    
+    .tech-comparison table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .tech-comparison th {
+      background-color: var(--primary-light);
+      color: white;
+      text-align: left;
+      padding: 15px;
+    }
+    
+    .tech-comparison td {
+      padding: 15px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .tech-comparison tr:nth-child(even) {
+      background-color: var(--bg-light);
+    }
+  </style>
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="../index.html" class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+        聚研AI
+      </a>
+      
+      <div class="nav-links">
+        <a href="dashboard.html">仪表盘</a>
+        <a href="tasks.html">任务管理</a>
+        <a href="teaching-research.html" class="active">科教融合</a>
+        <a href="resources.html">资源管理</a>
+      </div>
+      
+      <div class="user-info">
+        <span>Demo教师（demo_teacher）</span>
+        <div class="avatar">
+          <i class="fas fa-user"></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <div class="page-header">
+      <h1 class="page-title">科研与教学融合</h1>
+      <p class="page-subtitle">促进科研成果直接转化为教学资源，形成科研与教学的良性循环。平台提供科研成果教学化的工具和方法，帮助教师将最新研究进展融入课程内容。</p>
+    </div>
+    
+    <!-- 科教融合部分 -->
+    <div class="feature-section research-teaching">
+      <h2 class="section-title">
+        <i class="fas fa-graduation-cap"></i> 
+        <span style="position: relative; display: inline-block;">
+          <span style="position: relative; z-index: 2; border-bottom: 3px solid var(--accent-color); background-color: rgba(255, 120, 0, 0.1); padding: 2px 8px; border-radius: 4px; font-weight: 700; color: var(--primary-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.1);">科研与教学融合</span>
+          <span style="position: absolute; bottom: -2px; left: 0; width: 100%; height: 8px; background-color: rgba(255, 120, 0, 0.1); z-index: 1; border-radius: 0 0 4px 4px;"></span>
+        </span>
+      </h2>
+      <div class="feature-content">
+        <div class="feature-text">
+          <h3>核心能力</h3>
+          <ul>
+            <li>
+              <strong>教学素材智能生成：</strong> 
+              <span style="position: relative; display: inline-block;">
+                <span style="position: relative; z-index: 2; border-bottom: 3px solid var(--accent-color); background-color: rgba(255, 120, 0, 0.1); padding: 2px 8px; border-radius: 4px; font-weight: 700; color: var(--primary-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.1);">将科研成果自动转化为教学案例和教材内容</span>
+                <span style="position: absolute; bottom: -2px; left: 0; width: 100%; height: 8px; background-color: rgba(255, 120, 0, 0.1); z-index: 1; border-radius: 0 0 4px 4px;"></span>
+              </span>
+            </li>
+            <li>
+              <strong>实践教学支持：</strong> 基于科研项目自动设计实验方案和实践教学计划
+            </li>
+            <li>
+              <strong>学习资源库：</strong> 构建专业知识图谱和学术发展路径，辅助学生理解学科体系
+            </li>
+            <li>
+              <strong>个性化教学：</strong> 
+              <span style="position: relative; display: inline-block;">
+                <span style="position: relative; z-index: 2; border-bottom: 3px solid var(--accent-color); background-color: rgba(255, 120, 0, 0.1); padding: 2px 8px; border-radius: 4px; font-weight: 700; color: var(--primary-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.1);">根据学生特点推荐合适的科研参与路径</span>
+                <span style="position: absolute; bottom: -2px; left: 0; width: 100%; height: 8px; background-color: rgba(255, 120, 0, 0.1); z-index: 1; border-radius: 0 0 4px 4px;"></span>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div class="feature-image">
+          <img src="../img/illustrations/teaching-research.svg" alt="科研与教学融合" onerror="this.src='https://placehold.co/600x400/e9ecef/1a5fb4?text=科研与教学融合'">
+        </div>
+      </div>
+    </div>
+    
+    <!-- 课题立项支持部分 -->
+    <div class="feature-section project-support">
+      <h2 class="section-title">
+        <i class="fas fa-tasks"></i> 
+        <span style="position: relative; display: inline-block;">
+          <span style="position: relative; z-index: 2; border-bottom: 3px solid var(--accent-color); background-color: rgba(255, 120, 0, 0.1); padding: 2px 8px; border-radius: 4px; font-weight: 700; color: var(--primary-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.1);">课题立项支持</span>
+          <span style="position: absolute; bottom: -2px; left: 0; width: 100%; height: 8px; background-color: rgba(255, 120, 0, 0.1); z-index: 1; border-radius: 0 0 4px 4px;"></span>
+        </span>
+      </h2>
+      <div class="feature-content reverse">
+        <div class="feature-text">
+          <h3>主要功能</h3>
+          <ul>
+            <li>
+              <strong>课题趋势分析：</strong> 
+              <span style="position: relative; display: inline-block;">
+                <span style="position: relative; z-index: 2; border-bottom: 3px solid var(--accent-color); background-color: rgba(255, 120, 0, 0.1); padding: 2px 8px; border-radius: 4px; font-weight: 700; color: var(--primary-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.1);">自动追踪学科前沿和资助方向</span>
+                <span style="position: absolute; bottom: -2px; left: 0; width: 100%; height: 8px; background-color: rgba(255, 120, 0, 0.1); z-index: 1; border-radius: 0 0 4px 4px;"></span>
+              </span>，提供研究方向建议
+            </li>
+            <li>
+              <strong>申报文档生成：</strong> 一键生成项目申请书、研究计划和预算方案
+            </li>
+            <li>
+              <strong>竞争分析工具：</strong> 评估研究方向的创新性和竞争格局，提高立项成功率
+            </li>
+            <li>
+              <strong>团队匹配推荐：</strong> 
+              <span style="position: relative; display: inline-block;">
+                <span style="position: relative; z-index: 2; border-bottom: 3px solid var(--accent-color); background-color: rgba(255, 120, 0, 0.1); padding: 2px 8px; border-radius: 4px; font-weight: 700; color: var(--primary-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.1);">根据课题需求推荐最合适的研究团队组合</span>
+                <span style="position: absolute; bottom: -2px; left: 0; width: 100%; height: 8px; background-color: rgba(255, 120, 0, 0.1); z-index: 1; border-radius: 0 0 4px 4px;"></span>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div class="feature-image">
+          <img src="../img/illustrations/project-support.svg" alt="课题立项支持" onerror="this.src='https://placehold.co/600x400/e9ecef/1a5fb4?text=课题立项支持'">
+        </div>
+      </div>
+    </div>
+    
+    <!-- 行动呼吁 -->
+    <div class="cta-section">
+      <h2>开始体验科研教学一体化平台</h2>
+      <p>探索聚研AI如何帮助您提升科研效能，优化教学体验</p>
+      <a href="create-task.html" class="cta-button"><i class="fas fa-rocket" style="margin-right: 8px;"></i> 创建科教融合任务</a>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生成报告 - 聚研AI</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .progress-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    
+    .progress-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .progress-header h2 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    
+    .progress-header p {
+      color: #666;
+      font-size: 16px;
+    }
+    
+    .overall-progress {
+      margin-bottom: 30px;
+    }
+    
+    .progress-bar-container {
+      height: 20px;
+      background-color: #e9ecef;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #1a5fb4, #3584e4);
+      border-radius: 10px;
+      transition: width 0.5s ease;
+      width: 0%;
+    }
+    
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .progress-phases {
+      margin-top: 40px;
+    }
+    
+    .phase-item {
+      margin-bottom: 20px;
+      padding-left: 30px;
+      position: relative;
+    }
+    
+    .phase-icon {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    
+    .phase-icon.pending {
+      background-color: #e9ecef;
+      color: #adb5bd;
+    }
+    
+    .phase-icon.in-progress {
+      background-color: #dceefe;
+      color: #1a5fb4;
+    }
+    
+    .phase-icon.completed {
+      background-color: #d2f4d3;
+      color: #2ec27e;
+    }
+    
+    .phase-content {
+      padding-bottom: 20px;
+      border-left: 1px dashed #dee2e6;
+      padding-left: 20px;
+      margin-left: -11px;
+    }
+    
+    .phase-item:last-child .phase-content {
+      border-left: none;
+    }
+    
+    .phase-title {
+      font-weight: 500;
+      margin-bottom: 5px;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .phase-time {
+      font-size: 14px;
+      color: #adb5bd;
+    }
+    
+    .phase-details {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    
+    .phase-progress {
+      height: 6px;
+      background-color: #e9ecef;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    
+    .phase-progress-bar {
+      height: 100%;
+      background-color: #3584e4;
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+    
+    .log-console {
+      margin-top: 30px;
+      background-color: #1e1e1e;
+      border-radius: 6px;
+      color: #e0e0e0;
+      padding: 15px;
+      font-family: monospace;
+      height: 200px;
+      overflow-y: auto;
+    }
+    
+    .log-line {
+      margin-bottom: 4px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    .log-time {
+      color: #75bfff;
+      margin-right: 8px;
+    }
+    
+    .log-type {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      margin-right: 8px;
+      font-size: 12px;
+    }
+    
+    .log-type.info {
+      background-color: #3949ab;
+      color: #fff;
+    }
+    
+    .log-type.success {
+      background-color: #2e7d32;
+      color: #fff;
+    }
+    
+    .log-type.warning {
+      background-color: #f57f17;
+      color: #fff;
+    }
+    
+    .log-type.error {
+      background-color: #d32f2f;
+      color: #fff;
+    }
+    
+    .log-message {
+      color: #e0e0e0;
+    }
+    
+    .log-message.highlight {
+      color: #ffcb6b;
+    }
+    
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="../index.html" class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+        聚研AI
+      </a>
+      
+      <div style="display: flex; align-items: center;">
+        <span style="color: #666; margin-right: 10px;">Demo教师（demo_teacher）</span>
+        <div style="width: 36px; height: 36px; border-radius: 50%; background-color: #e9eff8; display: flex; align-items: center; justify-content: center;">
+          <i class="fas fa-user" style="color: #1a5fb4;"></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="params-page">
+    <div class="container">
+      <!-- 步骤导航 -->
+      <div class="step-nav">
+        <div class="step-item completed">
+          <div class="step-number">
+            <i class="fas fa-check"></i>
+          </div>
+          <div class="step-name">输入参数</div>
+        </div>
+        
+        <div class="step-item completed">
+          <div class="step-number">
+            <i class="fas fa-check"></i>
+          </div>
+          <div class="step-name">确认</div>
+        </div>
+        
+        <div class="step-item active">
+          <div class="step-number">3</div>
+          <div class="step-name">生成</div>
+        </div>
+        
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <div class="step-name">完成</div>
+        </div>
+      </div>
+
+      <!-- 进度容器 -->
+      <div class="progress-container">
+        <div class="progress-header">
+          <h2>正在生成物流运输配送技术专利研究报告</h2>
+          <p>系统正在处理您的请求，请稍候...</p>
+        </div>
+        
+        <div class="overall-progress">
+          <div class="progress-bar-container">
+            <div class="progress-bar" id="overallProgressBar" style="width: 11%;"></div>
+          </div>
+          <div class="progress-info">
+            <span>进度: <span id="progressPercentage">11%</span></span>
+            <span>已用时间: <span id="progressTime">00:00</span></span>
+          </div>
+        </div>
+
+        <!-- 阶段进度 -->
+        <div class="progress-phases" id="progressPhases">
+          <!-- 数据收集阶段 -->
+          <div class="phase-item" id="phase-1">
+            <div class="phase-icon in-progress">
+              <i class="fas fa-circle-notch fa-spin"></i>
+            </div>
+            <div class="phase-content">
+              <div class="phase-title">
+                <span>数据收集与预处理</span>
+                <span class="phase-time" id="phase-1-time">00:00</span>
+              </div>
+              <div class="phase-details" id="phase-1-details">正在从专利数据库收集物流运输配送技术专利数据...</div>
+              <div class="phase-progress">
+                <div class="phase-progress-bar" id="phase-1-progress" style="width: 30%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 专利分析阶段 -->
+          <div class="phase-item" id="phase-2">
+            <div class="phase-icon pending">
+              <i class="fas fa-circle"></i>
+            </div>
+            <div class="phase-content">
+              <div class="phase-title">
+                <span>专利技术分析</span>
+                <span class="phase-time" id="phase-2-time">--:--</span>
+              </div>
+              <div class="phase-details" id="phase-2-details">等待中...</div>
+              <div class="phase-progress">
+                <div class="phase-progress-bar" id="phase-2-progress" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 趋势识别阶段 -->
+          <div class="phase-item" id="phase-3">
+            <div class="phase-icon pending">
+              <i class="fas fa-circle"></i>
+            </div>
+            <div class="phase-content">
+              <div class="phase-title">
+                <span>趋势识别与竞争分析</span>
+                <span class="phase-time" id="phase-3-time">--:--</span>
+              </div>
+              <div class="phase-details" id="phase-3-details">等待中...</div>
+              <div class="phase-progress">
+                <div class="phase-progress-bar" id="phase-3-progress" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 报告生成阶段 -->
+          <div class="phase-item" id="phase-4">
+            <div class="phase-icon pending">
+              <i class="fas fa-circle"></i>
+            </div>
+            <div class="phase-content">
+              <div class="phase-title">
+                <span>报告撰写与格式化</span>
+                <span class="phase-time" id="phase-4-time">--:--</span>
+              </div>
+              <div class="phase-details" id="phase-4-details">等待中...</div>
+              <div class="phase-progress">
+                <div class="phase-progress-bar" id="phase-4-progress" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 日志控制台 -->
+        <div class="log-console" id="logConsole">
+          <div class="log-line">
+            <span class="log-time">13:05:01</span>
+            <span class="log-type info">INFO</span>
+            <span class="log-message">开始生成物流运输配送技术专利研究报告</span>
+          </div>
+          <div class="log-line">
+            <span class="log-time">13:05:02</span>
+            <span class="log-type info">INFO</span>
+            <span class="log-message">正在连接专利数据库...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // 模拟进度数据
+    const logMessages = [
+      { time: "13:05:04", type: "info", message: "数据库连接成功，开始查询物流运输配送技术专利" },
+      { time: "13:05:08", type: "info", message: "检索条件: 智能物流 OR 无人配送 OR 末端配送 OR 智能调度 OR 绿色物流" },
+      { time: "13:05:10", type: "info", message: "时间范围: 2020-01-01 至 2025-12-31" },
+      { time: "13:05:15", type: "success", message: "找到相关专利 3,284 件" },
+      { time: "13:05:20", type: "info", message: "开始下载专利数据..." },
+      { time: "13:05:30", type: "info", message: "正在处理中国专利数据" },
+      { time: "13:05:40", type: "info", message: "正在处理美国专利数据" },
+      { time: "13:05:50", type: "info", message: "正在处理欧洲专利数据" },
+      { time: "13:06:00", type: "info", message: "正在处理日本专利数据" },
+      { time: "13:06:10", type: "success", message: "专利数据收集完成" },
+      { time: "13:06:15", type: "info", message: "开始专利技术分类与聚类分析" },
+      { time: "13:06:20", type: "info", message: "使用机器学习算法对专利进行分类..." },
+      { time: "13:06:30", type: "info", message: "识别关键技术领域: 无人配送车辆、无人机配送、智能仓储、智能调度算法、绿色包装" },
+      { time: "13:06:40", type: "info", message: "正在分析专利技术创新点..." },
+      { time: "13:06:50", type: "info", message: "正在提取专利权利要求..." },
+      { time: "13:07:00", type: "info", message: "正在进行专利引用网络分析..." },
+      { time: "13:07:10", type: "success", message: "技术分析完成" },
+      { time: "13:07:15", type: "info", message: "开始竞争格局分析" },
+      { time: "13:07:20", type: "info", message: "正在识别领先专利申请人..." },
+      { time: "13:07:25", type: "info", message: "正在分析专利布局策略..." },
+      { time: "13:07:30", type: "info", message: "正在进行技术发展趋势分析..." },
+      { time: "13:07:35", type: "info", message: "正在识别专利技术热点领域..." },
+      { time: "13:07:40", type: "info", message: "正在分析技术发展路径..." },
+      { time: "13:07:45", type: "success", message: "趋势与竞争分析完成" },
+      { time: "13:07:50", type: "info", message: "开始撰写研究报告..." },
+      { time: "13:07:55", type: "info", message: "正在生成报告摘要..." },
+      { time: "13:08:00", type: "info", message: "正在生成研究背景章节..." },
+      { time: "13:08:05", type: "info", message: "正在生成研究方法章节..." },
+      { time: "13:08:10", type: "info", message: "正在生成技术分析章节..." },
+      { time: "13:08:15", type: "info", message: "正在生成竞争格局章节..." },
+      { time: "13:08:20", type: "info", message: "正在生成应用案例章节..." },
+      { time: "13:08:25", type: "info", message: "正在生成未来展望章节..." },
+      { time: "13:08:30", type: "info", message: "正在生成参考文献..." },
+      { time: "13:08:35", type: "info", message: "正在美化报告格式..." },
+      { time: "13:08:40", type: "info", message: "正在插入图表与可视化..." },
+      { time: "13:08:45", type: "success", message: "报告生成完成" },
+      { time: "13:08:50", type: "info", message: "正在转换为PDF格式..." },
+      { time: "13:08:55", type: "success", message: "PDF文件生成成功" },
+      { time: "13:09:00", type: "success", message: "物流运输配送技术2025最新技术专利研究报告生成完毕!" }
+    ];
+
+    // 模拟阶段进度数据
+    const phases = [
+      { 
+        id: "phase-1", 
+        startTime: 0, 
+        duration: 35, 
+        details: [
+          "正在从专利数据库收集物流运输配送技术专利数据...",
+          "正在处理各国专利局的物流运输配送技术专利...",
+          "正在清洗与预处理专利数据，移除重复与无效数据...",
+          "正在提取专利关键信息：标题、摘要、权利要求...",
+          "数据收集与预处理完成"
+        ]
+      },
+      { 
+        id: "phase-2", 
+        startTime: 35, 
+        duration: 25, 
+        details: [
+          "开始分析专利技术领域分布...",
+          "正在识别关键技术创新点与核心专利...",
+          "正在分析专利技术演进路径...",
+          "正在评估技术成熟度与创新水平...",
+          "专利技术分析完成"
+        ]
+      },
+      { 
+        id: "phase-3", 
+        startTime: 60, 
+        duration: 30, 
+        details: [
+          "开始识别物流运输配送技术发展趋势...",
+          "正在分析主要企业专利布局与竞争格局...",
+          "正在评估各技术路线的市场潜力...",
+          "正在识别技术机会点与潜在合作领域...",
+          "趋势识别与竞争分析完成"
+        ]
+      },
+      { 
+        id: "phase-4", 
+        startTime: 90, 
+        duration: 30, 
+        details: [
+          "开始撰写研究报告...",
+          "正在整合分析结果与专家见解...",
+          "正在生成数据可视化图表...",
+          "正在进行报告格式化与排版...",
+          "报告撰写与格式化完成"
+        ]
+      }
+    ];
+
+    // 总时长（秒）- 模拟2分钟的进度
+    const totalDuration = 120;
+    
+    // 当前时间（秒）
+    let currentTime = 0;
+    
+    // 定时器
+    let timer;
+    
+    // 日志索引
+    let logIndex = 0;
+    
+    // 格式化时间
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+    
+    // 更新总进度
+    function updateOverallProgress() {
+      const percentage = Math.min(100, Math.round((currentTime / totalDuration) * 100));
+      document.getElementById('overallProgressBar').style.width = `${percentage}%`;
+      document.getElementById('progressPercentage').textContent = `${percentage}%`;
+      document.getElementById('progressTime').textContent = formatTime(currentTime);
+    }
+    
+    // 更新阶段进度
+    function updatePhaseProgress() {
+      phases.forEach(phase => {
+        const phaseElem = document.getElementById(phase.id);
+        const phaseIcon = phaseElem.querySelector('.phase-icon');
+        const phaseProgress = document.getElementById(`${phase.id}-progress`);
+        const phaseDetails = document.getElementById(`${phase.id}-details`);
+        const phaseTime = document.getElementById(`${phase.id}-time`);
+        
+        // 阶段尚未开始
+        if (currentTime < phase.startTime) {
+          phaseIcon.className = 'phase-icon pending';
+          phaseIcon.innerHTML = '<i class="fas fa-circle"></i>';
+          phaseProgress.style.width = '0%';
+          phaseTime.textContent = '--:--';
+        }
+        // 阶段进行中
+        else if (currentTime < phase.startTime + phase.duration) {
+          const phaseElapsed = currentTime - phase.startTime;
+          const phasePercentage = Math.round((phaseElapsed / phase.duration) * 100);
+          
+          phaseIcon.className = 'phase-icon in-progress';
+          phaseIcon.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i>';
+          phaseProgress.style.width = `${phasePercentage}%`;
+          phaseTime.textContent = formatTime(phaseElapsed);
+          
+          // 更新详情文本
+          const detailIndex = Math.min(
+            Math.floor(phaseElapsed / (phase.duration / phase.details.length)),
+            phase.details.length - 1
+          );
+          phaseDetails.textContent = phase.details[detailIndex];
+        }
+        // 阶段已完成
+        else {
+          phaseIcon.className = 'phase-icon completed';
+          phaseIcon.innerHTML = '<i class="fas fa-check"></i>';
+          phaseProgress.style.width = '100%';
+          phaseTime.textContent = formatTime(phase.duration);
+          phaseDetails.textContent = phase.details[phase.details.length - 1];
+        }
+      });
+    }
+    
+    // 添加日志
+    function addLog() {
+      // 根据当前时间和总时长计算应该显示的日志数量
+      const targetLogCount = Math.floor(logMessages.length * (currentTime / totalDuration));
+      
+      // 确保日志索引不超过目标日志数量
+      while (logIndex < targetLogCount && logIndex < logMessages.length) {
+        const log = logMessages[logIndex];
+        const logLine = document.createElement('div');
+        logLine.className = 'log-line';
+        logLine.innerHTML = `
+          <span class="log-time">${log.time}</span>
+          <span class="log-type ${log.type}">${log.type.toUpperCase()}</span>
+          <span class="log-message${log.type === 'success' ? ' highlight' : ''}">${log.message}</span>
+        `;
+        
+        const logConsole = document.getElementById('logConsole');
+        logConsole.appendChild(logLine);
+        logConsole.scrollTop = logConsole.scrollHeight;
+        
+        logIndex++;
+      }
+    }
+    
+    // 流程结束
+    function finishProcess() {
+      clearInterval(timer);
+      // 确保所有阶段都显示为完成
+      currentTime = totalDuration;
+      updateOverallProgress();
+      updatePhaseProgress();
+      // 确保所有日志都显示
+      while (logIndex < logMessages.length) {
+        addLog();
+      }
+      
+      // 更新步骤导航，将"完成"步骤激活
+      document.querySelector('.step-item.active').classList.remove('active');
+      document.querySelectorAll('.step-item')[3].classList.add('active');
+      document.querySelectorAll('.step-item')[3].querySelector('.step-number').innerHTML = '<i class="fas fa-check"></i>';
+      
+      // 延迟1秒后跳转到物流报告页面
+      setTimeout(() => {
+        window.location.href = "logistics-report.html";
+      }, 1000);
+    }
+    
+    // 开始模拟进度
+    function startProgressSimulation() {
+      // 每秒更新一次，总共2分钟
+      timer = setInterval(() => {
+        currentTime++;
+        
+        updateOverallProgress();
+        updatePhaseProgress();
+        addLog();
+        
+        if (currentTime >= totalDuration) {
+          finishProcess();
+        }
+      }, 1000); // 设置为1000毫秒，实际2分钟的进度
+    }
+    
+    // 页面加载后启动模拟
+    window.addEventListener('load', () => {
+      startProgressSimulation();
+    });
+  </script>
+</body>
+</html> 

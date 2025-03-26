@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>案例展示 - 聚研AI</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="../index.html" class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+        聚研AI
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="../index.html">首页</a></li>
+        <li><a href="../index.html#features">功能介绍</a></li>
+        <li><a href="cases.html" class="active">案例展示</a></li>
+        <li><a href="about.html">关于我们</a></li>
+      </ul>
+      
+      <a href="login.html" class="login-btn">登录</a>
+    </div>
+  </nav>
+
+  <!-- 案例展示页面标题 -->
+  <section class="page-header">
+    <div class="container">
+      <h1>案例展示</h1>
+      <p>聚研AI赋能教研创新，助力高校教师科研与教学提升</p>
+    </div>
+  </section>
+
+  <!-- 案例分类 -->
+  <section class="case-categories">
+    <div class="container">
+      <div class="category-tabs">
+        <button class="category-tab active" data-category="all">全部案例</button>
+        <button class="category-tab" data-category="research">科研立项</button>
+        <button class="category-tab" data-category="teaching">教学案例</button>
+        <button class="category-tab" data-category="patent">专利申请</button>
+        <button class="category-tab" data-category="industry">产教融合</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 案例列表 -->
+  <section class="case-list">
+    <div class="container">
+      <!-- 案例卡片 1 -->
+      <div class="case-card" data-categories="research teaching">
+        <div class="case-image">
+          <div style="width: 100%; height: 200px; background-color: #e9eff8; display: flex; justify-content: center; align-items: center; border-radius: 8px 8px 0 0;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="case-content">
+          <div class="case-tags">
+            <span class="case-tag">科研立项</span>
+            <span class="case-tag">教学案例</span>
+          </div>
+          <h3 class="case-title">机电一体化技术发展趋势分析</h3>
+          <p class="case-excerpt">通过聚研AI平台，张教授快速获取了机电一体化领域的技术前沿信息，生成了完整的技术发展趋势分析报告，为其课题申报和课程改革提供了有力支持。</p>
+          <div class="case-meta">
+            <span><i class="fas fa-university"></i> 某职业技术学院</span>
+            <span><i class="fas fa-user"></i> 张教授</span>
+          </div>
+          <a href="#" class="case-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      
+      <!-- 案例卡片 2 -->
+      <div class="case-card" data-categories="teaching">
+        <div class="case-image">
+          <div style="width: 100%; height: 200px; background-color: #e9eff8; display: flex; justify-content: center; align-items: center; border-radius: 8px 8px 0 0;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12" y2="18"></line>
+            </svg>
+          </div>
+        </div>
+        <div class="case-content">
+          <div class="case-tags">
+            <span class="case-tag">教学案例</span>
+          </div>
+          <h3 class="case-title">智能控制系统实验教学案例开发</h3>
+          <p class="case-excerpt">李老师利用聚研AI平台收集和整理了智能控制系统的最新应用案例，生成了一套完整的实验教学方案，大大提高了学生的学习兴趣和实践能力。</p>
+          <div class="case-meta">
+            <span><i class="fas fa-university"></i> 某工程学院</span>
+            <span><i class="fas fa-user"></i> 李老师</span>
+          </div>
+          <a href="#" class="case-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      
+      <!-- 案例卡片 3 -->
+      <div class="case-card" data-categories="patent">
+        <div class="case-image">
+          <div style="width: 100%; height: 200px; background-color: #e9eff8; display: flex; justify-content: center; align-items: center; border-radius: 8px 8px 0 0;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.2 5.9l.7-.7c.4-.4.4-1 0-1.4-.4-.4-1-.4-1.4 0l-.7.7"></path>
+              <path d="M18.8 5.9L5.9 18.8C5.9 19.4 6 20 6.3 20.5c.1.1-.1.3-.1.4-.2.8-.4 1.6-.9 2.1-.4.4-1 .4-1.4 0-.2-.2-.2-.6 0-.9C4.3 21.7 4.5 21 4.8 20c0-.1-.1-.1-.1-.2C4.3 19.3 4 18.7 4 18.1L17 5.2"></path>
+              <path d="M18.8 5.9l-1.3-1.3"></path>
+              <path d="M8.6 14l1.4-1.4"></path>
+              <path d="M10.3 7.7L14 4s.9-1 2 0c1.1 1 0 2 0 2l-3.7 3.7"></path>
+              <path d="M14.3 12.3L18 8.6s.9-1 2 0c1.1 1 0 2 0 2l-3.7 3.7"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="case-content">
+          <div class="case-tags">
+            <span class="case-tag">专利申请</span>
+          </div>
+          <h3 class="case-title">新型智能传感器专利申请辅助</h3>
+          <p class="case-excerpt">赵教授团队利用聚研AI平台进行专利检索和分析，发现了智能传感器领域的技术空白，并借助平台生成的竞争格局分析报告，成功申请了3项发明专利。</p>
+          <div class="case-meta">
+            <span><i class="fas fa-university"></i> 某理工大学</span>
+            <span><i class="fas fa-user"></i> 赵教授</span>
+          </div>
+          <a href="#" class="case-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      
+      <!-- 案例卡片 4 -->
+      <div class="case-card" data-categories="industry">
+        <div class="case-image">
+          <div style="width: 100%; height: 200px; background-color: #e9eff8; display: flex; justify-content: center; align-items: center; border-radius: 8px 8px 0 0;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="case-content">
+          <div class="case-tags">
+            <span class="case-tag">产教融合</span>
+          </div>
+          <h3 class="case-title">产业人才需求分析与课程改革</h3>
+          <p class="case-excerpt">王院长使用聚研AI平台分析了制造业人才需求趋势，生成了详细的人才画像和技能需求报告，指导学院进行了专业课程体系改革，毕业生就业率提升了15%。</p>
+          <div class="case-meta">
+            <span><i class="fas fa-university"></i> 某应用技术学院</span>
+            <span><i class="fas fa-user"></i> 王院长</span>
+          </div>
+          <a href="#" class="case-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      
+      <!-- 案例卡片 5 -->
+      <div class="case-card" data-categories="research industry">
+        <div class="case-image">
+          <div style="width: 100%; height: 200px; background-color: #e9eff8; display: flex; justify-content: center; align-items: center; border-radius: 8px 8px 0 0;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3v18h18"></path>
+              <path d="M18.4 8.64L18.57 8.8a2 2 0 0 1 0 2.83l-8.49 8.48a2 2 0 0 1-2.83 0l-.17-.17a2 2 0 0 1 0-2.83l8.49-8.48a2 2 0 0 1 2.83 0Z"></path>
+              <path d="M15 8a5 5 0 1 1 8-4"></path>
+              <path d="M12 5l1 1"></path>
+              <path d="M5 12l1 1"></path>
+              <path d="M5 19l1 1"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="case-content">
+          <div class="case-tags">
+            <span class="case-tag">科研立项</span>
+            <span class="case-tag">产教融合</span>
+          </div>
+          <h3 class="case-title">新能源汽车技术发展与人才培养研究</h3>
+          <p class="case-excerpt">陈教授团队利用聚研AI平台进行了新能源汽车技术发展趋势分析，并结合产业需求，设计了校企协同培养方案，成功申报了省级教改课题。</p>
+          <div class="case-meta">
+            <span><i class="fas fa-university"></i> 某汽车工程学院</span>
+            <span><i class="fas fa-user"></i> 陈教授</span>
+          </div>
+          <a href="#" class="case-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      
+      <!-- 案例卡片 6 -->
+      <div class="case-card" data-categories="teaching patent">
+        <div class="case-image">
+          <div style="width: 100%; height: 200px; background-color: #e9eff8; display: flex; justify-content: center; align-items: center; border-radius: 8px 8px 0 0;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 2v8.5a.5 .5 0 0 1-1 0v-1a.5 .5 0 0 0-1 0v1a.5 .5 0 0 1-1 0v-1a.5 .5 0 0 0-1 0v1a.5 .5 0 0 1-1 0V7a.5 .5 0 0 0-1 0v5.5a.5 .5 0 0 1-1 0v-1a.5 .5 0 0 0-1 0v1a.5 .5 0 0 1-1 0v-1a.5 .5 0 0 0-1 0v1a.5 .5 0 0 1-1 0V2"></path>
+              <path d="M22 12c0 5.5-4.5 10-10 10-2.1 0-4.1-.6-5.7-1.7a.5 .5 0 0 1-.2-.4v-4.4a.5 .5 0 0 0-.5-.5h-1.1a.5 .5 0 0 1-.35-.15l-.9-.9a.5 .5 0 0 1 0-.7l2.3-2.3a.5 .5 0 0 1 .7 0l.9 .9a.5 .5 0 0 1 .15 .35v1.1a.5 .5 0 0 0 .5 .5h4.3a.5 .5 0 0 0 .4-.2c1.1-1.5 1.7-3.5 1.7-5.6 0-.3 0-.5 0-.8"></path>
+              <path d="M12 2c3.3 0 5.7 1.3 7 3.2l-1 .8a.5 .5 0 0 0 0 .8l.3 .2H21.5a.5 .5 0 0 0 .5-.5V3.5a.5 .5 0 0 0-.2-.4l-.3-.2a.5 .5 0 0 0-.8 0l-.8 1C17.5 1.3 13.4 0 9.5 0c-.3 0-.7 0-1 0"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="case-content">
+          <div class="case-tags">
+            <span class="case-tag">教学案例</span>
+            <span class="case-tag">专利申请</span>
+          </div>
+          <h3 class="case-title">学生创新能力培养与专利申请指导</h3>
+          <p class="case-excerpt">刘老师使用聚研AI平台为学生提供创新设计和专利申请指导，帮助学生团队分析了相关技术领域的专利状况，学生在一年内成功申请了5项实用新型专利。</p>
+          <div class="case-meta">
+            <span><i class="fas fa-university"></i> 某电子信息学院</span>
+            <span><i class="fas fa-user"></i> 刘老师</span>
+          </div>
+          <a href="#" class="case-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 查看更多 -->
+  <section class="more-cases">
+    <div class="container">
+      <button class="load-more-btn">查看更多案例 <i class="fas fa-chevron-down"></i></button>
+    </div>
+  </section>
+
+  <!-- 案例展示亮点 -->
+  <section class="case-highlights">
+    <div class="container">
+      <h2 class="section-title">聚研AI如何助力教育工作者</h2>
+      
+      <div class="highlights-grid">
+        <div class="highlight-card">
+          <div class="highlight-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <h3>深度检索与分析</h3>
+          <p>AI驱动的智能检索系统，一站式覆盖学术文献、专利、行业报告等多源数据，帮助教师快速定位关键信息。</p>
+        </div>
+        
+        <div class="highlight-card">
+          <div class="highlight-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>趋势洞察报告</h3>
+          <p>自动生成技术趋势、竞争格局和应用场景分析报告，为教师科研选题和教学内容更新提供依据。</p>
+        </div>
+        
+        <div class="highlight-card">
+          <div class="highlight-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3>教学资源生成</h3>
+          <p>基于前沿研究自动生成教学案例、课程大纲和实验指导书，助力教师提升教学质量。</p>
+        </div>
+        
+        <div class="highlight-card">
+          <div class="highlight-icon">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <h3>产教融合促进</h3>
+          <p>分析产业发展需求与人才画像，帮助院校优化专业设置和课程体系，提高人才培养质量。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 开始使用 -->
+  <section class="start-using">
+    <div class="container">
+      <div class="cta-content">
+        <h2>开始使用聚研AI，提升您的教研工作效率</h2>
+        <p>注册即可获得免费试用积分，体验AI驱动的教育数字化转型</p>
+        <div class="cta-buttons">
+          <a href="login.html" class="cta-btn">立即开始</a>
+          <a href="#" class="cta-btn outline">申请演示</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer style="background-color: #1a5fb4; color: white; padding: 40px 0; text-align: center;">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 30px;">
+        <div>
+          <h3 style="margin-bottom: 15px;">关于聚研AI</h3>
+          <p>专为高校、职校教师打造的智能教研平台</p>
+        </div>
+        <div>
+          <h3 style="margin-bottom: 15px;">联系我们</h3>
+          <p>邮箱：contact@researchcube.com</p>
+        </div>
+        <div>
+          <h3 style="margin-bottom: 15px;">关注我们</h3>
+          <div style="display: flex; gap: 15px; justify-content: center;">
+            <i class="fab fa-weixin"></i>
+            <i class="fab fa-weibo"></i>
+          </div>
+        </div>
+      </div>
+      <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px;">
+        <p>© 2024 ResearchCube 聚研AI. 保留所有权利.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html> 
