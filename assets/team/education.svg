@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eef3fb" />
+      <stop offset="100%" stop-color="#e1ebff" />
+    </linearGradient>
+    <linearGradient id="primary-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a5fb4" />
+      <stop offset="100%" stop-color="#1552a0" />
+    </linearGradient>
+  </defs>
+  <!-- 背景 -->
+  <rect width="200" height="200" fill="url(#bg-gradient)" rx="8" ry="8" />
+  
+  <!-- 头像 -->
+  <g transform="translate(100, 80)">
+    <!-- 衣服 -->
+    <path d="M -50,40 L -40,10 L 40,10 L 50,40 L 60,120 L -60,120 Z" fill="#8e44ad" />
+    <!-- 项链 -->
+    <circle cx="0" cy="20" r="5" fill="#f1c40f" />
+    <path d="M 0,25 L 0,40" stroke="#f1c40f" stroke-width="2" />
+    
+    <!-- 头部 -->
+    <circle cx="0" cy="0" r="40" fill="#fadec9" />
+    
+    <!-- 头发 -->
+    <path d="M -40,-15 C -40,-30 -20,-45 0,-45 C 20,-45 40,-30 40,-15 L 40,0 C 40,10 30,15 20,15 L -20,15 C -30,15 -40,10 -40,0 Z" fill="#8c7156" />
+    <path d="M -20,15 C -15,5 15,5 20,15" fill="#8c7156" />
+    
+    <!-- 眼睛 -->
+    <ellipse cx="-12" cy="-5" rx="5" ry="3" fill="#34495e" />
+    <ellipse cx="12" cy="-5" rx="5" ry="3" fill="#34495e" />
+    
+    <!-- 嘴巴 -->
+    <path d="M -10,15 C -5,20 5,20 10,15" fill="none" stroke="#34495e" stroke-width="2" />
+    
+    <!-- 耳环 -->
+    <circle cx="-42" cy="0" r="4" fill="#3498db" />
+    <circle cx="42" cy="0" r="4" fill="#3498db" />
+  </g>
+  
+  <!-- 标题 -->
+  <rect x="30" y="165" width="140" height="25" rx="5" ry="5" fill="url(#primary-gradient)" />
+  <text x="100" y="183" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" font-weight="bold">张丽 教育总监</text>
+</svg> 

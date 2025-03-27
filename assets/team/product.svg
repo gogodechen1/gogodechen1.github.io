@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eef3fb" />
+      <stop offset="100%" stop-color="#e1ebff" />
+    </linearGradient>
+    <linearGradient id="primary-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a5fb4" />
+      <stop offset="100%" stop-color="#1552a0" />
+    </linearGradient>
+  </defs>
+  <!-- 背景 -->
+  <rect width="200" height="200" fill="url(#bg-gradient)" rx="8" ry="8" />
+  
+  <!-- 头像 -->
+  <g transform="translate(100, 80)">
+    <!-- 衣服 -->
+    <path d="M -50,40 L -40,10 L 40,10 L 50,40 L 60,120 L -60,120 Z" fill="#27ae60" />
+    <path d="M -30,30 C -20,20 20,20 30,30" fill="none" stroke="white" stroke-width="2" />
+    
+    <!-- 头部 -->
+    <circle cx="0" cy="0" r="40" fill="#f9dcc4" />
+    
+    <!-- 头发 -->
+    <path d="M -35,-30 C -25,-45 25,-45 35,-30 C 40,-20 40,0 35,5 L -35,5 C -40,0 -40,-20 -35,-30 Z" fill="#8e44ad" />
+    
+    <!-- 眼睛 -->
+    <ellipse cx="-12" cy="-5" rx="5" ry="3" fill="#34495e" />
+    <ellipse cx="12" cy="-5" rx="5" ry="3" fill="#34495e" />
+    
+    <!-- 嘴巴 -->
+    <path d="M -10,15 C -5,20 5,20 10,15" fill="none" stroke="#34495e" stroke-width="2" />
+    
+    <!-- 耳环 -->
+    <circle cx="-42" cy="0" r="5" fill="#f1c40f" />
+  </g>
+  
+  <!-- 标题 -->
+  <rect x="30" y="165" width="140" height="25" rx="5" ry="5" fill="url(#primary-gradient)" />
+  <text x="100" y="183" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" font-weight="bold">王明 产品总监</text>
+</svg> 
